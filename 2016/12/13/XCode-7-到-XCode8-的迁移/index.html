@@ -22,7 +22,7 @@
 只在写 ObjectiveC的时候一般也只是把XCode升完后，少数API 方法改改，这次7 到8 ，Swift2 到了3 ，还真是很痛。好在XCode8 还是支持 Swift 2.3的。
 这两天把一个项目升能XCode简直就是搞得生无所恋。">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/006tNbRwgw1faqm8bxu2xj30ku080jry.jpg">
-<meta property="og:updated_time" content="2016-12-14T13:00:12.000Z">
+<meta property="og:updated_time" content="2016-12-14T14:58:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XCode 7 到 XCode8 的迁移">
 <meta name="twitter:description" content="每年ios升级都是一个很头痛的问题， ios升了，XCode也升了。有时甚至你还需要把电脑的macOS先升了才能安装对应版本的XCode
@@ -111,7 +111,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://ww2.sinaimg.cn/large/006tNbRwgw1faqm8bxu2xj30ku080jry.jpg" rel="gallery_ciwp1wdqr00009goo44007w5o">
+      <a class="article-gallery-img fancybox" href="http://ww2.sinaimg.cn/large/006tNbRwgw1faqm8bxu2xj30ku080jry.jpg" rel="gallery_ciwp2bc7f0002ahooy505zip2">
         <img src="http://ww2.sinaimg.cn/large/006tNbRwgw1faqm8bxu2xj30ku080jry.jpg" itemprop="image">
       </a>
     
@@ -142,8 +142,7 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ww2.sinaimg.cn/large/006tNbRwgw1faqm8bxu2xj30ku080jry.jpg" alt=""></p>
-<p>每年ios升级都是一个很头痛的问题， ios升了，XCode也升了。有时甚至你还需要把电脑的macOS先升了才能安装对应版本的XCode</p>
+        <p>每年ios升级都是一个很头痛的问题， ios升了，XCode也升了。有时甚至你还需要把电脑的macOS先升了才能安装对应版本的XCode</p>
 <p>只在写 ObjectiveC的时候一般也只是把XCode升完后，少数API 方法改改，这次7 到8 ，Swift2 到了3 ，还真是很痛。好在XCode8 还是支持 Swift 2.3的。</p>
 <p>这两天把一个项目升能XCode简直就是搞得生无所恋。</p>
 <a id="more"></a>
@@ -154,8 +153,11 @@
 <p><img src="http://ww1.sinaimg.cn/large/006y8lVagw1fan9708b8wj30my0c0tb0.jpg" alt=""></p>
 <p>我们先选择Later </p>
 <p>2.修改Podfile 第三方依赖库，把所有的项目都设置成支持Swift 2.3，然后pod update</p>
-<p>3.设置对应项目，使用Swift2.3</p>
+<p>3.设置对应项目，使用Swift2.3,包括主项目和pod项目都要设置。</p>
 <p><img src="http://ww3.sinaimg.cn/large/006y8lVagw1fan9twsyemj313m0tu0zo.jpg" alt=""></p>
+<p>4.最后将 Edit -&gt;Convert-&gt;To current Swift Syntax  选择 Swift 2.3； 等待Xcode自动转换，选择保存就OK了。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNbRwgw1faqpo2ypt9j311i0sgjxs.jpg" alt=""></p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNbRwgw1faqpozx16zj316g0psn0y.jpg" alt=""></p>
 
       
     </div>
