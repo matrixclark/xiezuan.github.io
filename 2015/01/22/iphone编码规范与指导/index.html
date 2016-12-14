@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>object-c 编码规范与指导 | xiezuan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="开发" />
+  
+  
+  
+  
+  <meta name="description" content="文档版本
+
+
+版本号
+修改时间
+修改内容
+修改人
+
+
+
+
+1.0
+2011-04-12
+创建
+贺发虎
+
+
+1.1
+2015-01-21
+修改
+谢躜
+
+
+
+概述对于任何工程项目来说，统一的施工标准都是保证工程质量的重要因素。堪称当今人类最抽象、最复杂的工程—软件工程，自然更加不能例外。高品质、易维护的软件开发离不开清晰严格的编码规范。本文档详细描述object-C软件开发过程中的编码规范。本规范也适">
+<meta property="og:type" content="article">
+<meta property="og:title" content="object-c 编码规范与指导">
+<meta property="og:url" content="https://xiezuan.github.io/2015/01/22/iphone编码规范与指导/index.html">
+<meta property="og:site_name" content="xiezuan's blog">
+<meta property="og:description" content="文档版本
+
+
+版本号
+修改时间
+修改内容
+修改人
+
+
+
+
+1.0
+2011-04-12
+创建
+贺发虎
+
+
+1.1
+2015-01-21
+修改
+谢躜
+
+
+
+概述对于任何工程项目来说，统一的施工标准都是保证工程质量的重要因素。堪称当今人类最抽象、最复杂的工程—软件工程，自然更加不能例外。高品质、易维护的软件开发离不开清晰严格的编码规范。本文档详细描述object-C软件开发过程中的编码规范。本规范也适">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006tNbRwgw1faqmgd2mlcj30sg0d2gmq.jpg">
+<meta property="og:updated_time" content="2016-12-14T13:05:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="object-c 编码规范与指导">
+<meta name="twitter:description" content="文档版本
+
+
+版本号
+修改时间
+修改内容
+修改人
+
+
+
+
+1.0
+2011-04-12
+创建
+贺发虎
+
+
+1.1
+2015-01-21
+修改
+谢躜
+
+
+
+概述对于任何工程项目来说，统一的施工标准都是保证工程质量的重要因素。堪称当今人类最抽象、最复杂的工程—软件工程，自然更加不能例外。高品质、易维护的软件开发离不开清晰严格的编码规范。本文档详细描述object-C软件开发过程中的编码规范。本规范也适">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006tNbRwgw1faqmgd2mlcj30sg0d2gmq.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="xiezuan&#39;s blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+<body>
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            <a href="http://demo.athemes.com/hiero/" title="Hiero" rel="home">
+              xiezuan&#39;s blog</a>
+          </h1>
+          <div class="site-description">学习总结 思考感悟 知识管理</div>
+
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">标签</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div style="background:#fff;width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;">
+        <img width="100%" alt="Hike News" src="/css/images/pose.jpg">
+      </div>
+
+  </div>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="objective-c-iphone编码规范与指导" style="width: 66%; float:left;" class="article article-type-objective-c" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="http://ww1.sinaimg.cn/large/006tNbRwgw1faqmgd2mlcj30sg0d2gmq.jpg" rel="gallery_ciwp0xf3800084coohc1tr6aq">
+        <img src="http://ww1.sinaimg.cn/large/006tNbRwgw1faqmgd2mlcj30sg0d2gmq.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      object-c 编码规范与指导
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2015/01/22/iphone编码规范与指导/" class="article-date">
+	  <time datetime="2015-01-22T03:06:25.000Z" itemprop="datePublished">一月 22, 2015</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ios/">ios</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="文档版本"><a href="#文档版本" class="headerlink" title="文档版本"></a>文档版本</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">版本号</th>
+<th style="text-align:center">修改时间</th>
+<th style="text-align:center">修改内容</th>
+<th style="text-align:center">修改人</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2011-04-12</td>
+<td style="text-align:center">创建</td>
+<td style="text-align:center">贺发虎</td>
+</tr>
+<tr>
+<td style="text-align:center">1.1</td>
+<td style="text-align:center">2015-01-21</td>
+<td style="text-align:center">修改</td>
+<td style="text-align:center">谢躜</td>
+</tr>
+</tbody>
+</table>
+<p>概述对于任何工程项目来说，统一的施工标准都是保证工程质量的重要因素。堪称当今人类最抽象、最复杂的工程—软件工程，自然更加不能例外。高品质、易维护的软件开发离不开清晰严格的编码规范。本文档详细描述object-C软件开发过程中的编码规范。本规范也适用于所有在文档中出现的源码。</p>
+<a id="more"></a>
+<h2 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h2><p>所有iphone的源文件均必须包含一个规范的说明，说明包含了该文件的名称、功能概述、作者、版权和版本历史信息等内容。文件头和函数的说明的格式为：</p>
+<h3 id="1-文件头说明"><a href="#1-文件头说明" class="headerlink" title="1.文件头说明"></a>1.文件头说明</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*fileName======================================================================模块名	:&lt;模块名称&gt;文件名	:&lt;文件名&gt;实现功能:&lt;描述该文件实现的主要功能&gt; 作者	:&lt;作者部门和姓名&gt;版本	:&lt;当前版本号&gt;创建日期:备注	:&lt;其它说明&gt;修改日期:&lt;日期格式：yyyy-mm-dd&gt;修改人	:&lt;修改人&gt;</span></div><div class="line">修改内容:&lt;修改内容&gt;======================================================================</div><div class="line">fileName*/</div><div class="line">​```<span class="meta">### 2.方法说明</span></div><div class="line">​```objc<span class="comment">/**</span></div><div class="line"> *  &lt;#Description#&gt;</div><div class="line"> *</div><div class="line"> *  @param task    &lt;#task description#&gt;</div><div class="line"> *  @param arrange &lt;#arrange description#&gt;</div><div class="line"> *</div><div class="line"> *  @created by 谢躜 on 2015-01-21 09:30:19</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h3 id="3-头文件的引用说明"><a href="#3-头文件的引用说明" class="headerlink" title="3.头文件的引用说明"></a>3.头文件的引用说明</h3><p>在h文件中引用其他类用<code>@class fileName</code>；在m文件中引用其他类都用<code>#import “fileName.h</code>”</p>
+<h3 id="4-文件的组织结构"><a href="#4-文件的组织结构" class="headerlink" title="4.文件的组织结构"></a>4.文件的组织结构</h3><p><img src="http://upload-images.jianshu.io/upload_images/139705-bb799c0a2d06063a.png" alt="文档结构 .png"></p>
+<p>参考 coding ios 客户端源码规范</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">├── Coding_iOS</div><div class="line">│   ├── Models：数据类</div><div class="line">│   ├── Views：视图类</div><div class="line">│   │   ├── CCell：所有的CollectionViewCell都在这里</div><div class="line">│   │   ├── Cell：所有的TableViewCell都在这里</div><div class="line">│   │   └── XXX：ListView（项目、动态、任务、讨论、文档、代码）和InputView（用于聊天和评论的输入框）</div><div class="line">│   ├── Controllers：控制器，对应app中的各个页面</div><div class="line">│   │   ├── Login：登录页面</div><div class="line">│   │   ├── RootControllers：登录后的根页面</div><div class="line">│   │   ├── MeSetting：设置信息页面</div><div class="line">│   │   └── XXX：其它页面</div><div class="line">│   ├── Images：app中用到的所有的图片都在这里</div><div class="line">│   ├── Resources：资源文件</div><div class="line">│   ├── Util：一些常用控件和Category、Manager之类</div><div class="line">│   │   ├── Common</div><div class="line">│   │   ├── Manager</div><div class="line">│   │   ├── OC_Category</div><div class="line">│   │   └── ObjcRuntime</div><div class="line">│   └── Vendor：用到的一些第三方类库，一般都有改动</div><div class="line">│       ├── AFNetworking</div><div class="line">│       ├── AGEmojiKeyboard</div><div class="line">│       ├── ASProgressPopUpView</div><div class="line">│       ├── ActionSheetPicker</div><div class="line">│       ├── FontAwesome+iOS</div><div class="line">│       ├── MJPhotoBrowser</div><div class="line">│       ├── MLEmojiLabel</div><div class="line">│       ├── NSDate+Helper</div><div class="line">│       ├── NSStringEmojize</div><div class="line">│       ├── PPiAwesomeButton</div><div class="line">│       ├── QBImagePickerController</div><div class="line">│       ├── RDVTabBarController</div><div class="line">│       ├── SMPageControl</div><div class="line">│       ├── SVPullToRefresh</div><div class="line">│       ├── SWTableViewCell</div><div class="line">│       ├── UMENG</div><div class="line">│       ├── UMessage_Sdk_1.1.0</div><div class="line">│       ├── XGPush</div><div class="line">│       ├── XTSegmentControl</div><div class="line">│       └── iCarousel</div><div class="line">└── Pods：项目使用了[CocoaPods](http://code4app.com/article/cocoapods-install-usage)这个类库管理工具</div></pre></td></tr></table></figure>
+<p>命名规则如果想要有效的管理一个稍微复杂一点的体系，针对其中事物的一套统一、带层次结构、清晰明了的命名准则就是必不可少而且非常好用的工具。 活跃在生物学、化学、军队、监狱、黑社会、恐怖组织等各个领域内的大量有识先辈们都曾经无数次地以实际行动证明了以上公理的正确性。除了上帝（设它可以改变世间万物的秩序）以外，相信没人有实力对它不屑一顾。在软件开发这一高度抽象而且十分复杂的活动中，命名规则的重要性更显得尤为突出。一套定义良好并且完整的、在整个项目中统一使用的命名规范将大大提升源代码的可读性和软件的可维护性。在引入细节之前，先说明一下命名规范的整体原则：</p>
+<p><strong>同一性:</strong><br>在编写一个子模块或派生类的时候，要遵循其基类或整体模块的命名风格，保持命名风格在整个模块中的同一性。 </p>
+<ul>
+<li><strong>标识符组成:</strong><br>标识符采用英文单词或其组合，应当直观且可以拼读，可望文知意，用词应当准确。 <em> <strong>最小化长度和最大化信息量原则:</strong><br>在保持一个标识符意思明确的同时，应当尽量缩短其长度。</em> <strong>避免过于相似:</strong><br>不要出现仅靠大小写区分的相似的标识符，例如<code>i</code>与<code>I</code>，<code>function</code>与<code>Function</code>等等。 <em> <strong>避免在不同级别的作用域中重名:</strong><br>程序中不要出现名字完全相同的局部变量和全局变量，尽管两者的作用域不同而不会发生语法错误，但容易使人误解。 </em> <strong>正确命名具有互斥意义的标识符:</strong><br>用正确的反义词组命名具有互斥意义的标识符，如： <code>minValueInteger</code> 和 <code>maxValueInteger</code>，<code>getName()</code> 和 <code>setName()</code> 等 </li>
+</ul>
+<h3 id="5-h，m，nib文件名命名"><a href="#5-h，m，nib文件名命名" class="headerlink" title="5.h，m，nib文件名命名"></a>5.h，m，nib文件名命名</h3><p>除了异常类等个别情况（不希望被用户看作一个普通的、正常的类之情况）外，iphone的h，m，nib文件名命名应该遵循以下准则：</p>
+<p><strong>(1)</strong> h，m，nib文件名命名的名称都要以大写字母开头；<br><strong>(2)</strong> 如果是一般的视图控制器，则后面加上<code>ViewController，即h，m，nib</code>文件名的名称仿效分别为：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">***ViewController.h</div><div class="line">***ViewController.m</div><div class="line">***ViewController.xib</div></pre></td></tr></table></figure>
+<p><strong>(3)</strong>如果是自定义的视图类，则后面加上对应的类型，</p>
+<blockquote>
+<p>UITableViewCell 简写为 Cell，UICollectionViewCell 简写为CCell </p>
+</blockquote>
+<p>h，m，nib文件名的名称仿效分别为：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">***View.h、</div><div class="line">***View.m、</div><div class="line">***View.xib；</div><div class="line"></div><div class="line">***Cell.h、</div><div class="line">***Cell.m、</div><div class="line">***Cell.xib；</div><div class="line"></div><div class="line">***CCell.h、</div><div class="line">***CCell.m、</div><div class="line">***CCell.xib；</div></pre></td></tr></table></figure>
+<h3 id="6-变量"><a href="#6-变量" class="headerlink" title="6.    变量"></a>6.    变量</h3><p><strong>（1）</strong>所有变量名命名的名称都要以小写字母开头。</p>
+<p>（2）<strong>类中定义变量名称：其主要格式为`*</strong>+对象类所在的名称<code>，如给</code>UITextFiled<code>命名，则要写成</code><em>*</em>TextField<code>、如</code>valueTextFiled<code>、</code>titleTextField<code>等，相应的</code>UILabel<code>的命名有</code>valueLabel<code>、</code>titleLabel<code>等，</code>UITableView<code>则要写成</code>valueTableView<code>等。其规则也同样适用于</code>NSArray、NSMutableDictonary`等所有类型；另外，如果当前变量是自己类中使用，则要在后面加上下划线，如valueArray_等，而在属性中定义时用valueArray。</p>
+<p><strong>（3）</strong>全局变量全部以单词<code>_global</code>开头，以类型结尾，如<code>_global***TextField</code>、<code>_global***String</code>等。</p>
+<p><strong>（4）</strong>成员变量。在变量前面加上下划线<code>_</code> 如</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIButon</span> * _cancelButton;</div></pre></td></tr></table></figure>
+<p><strong>（5）</strong>其中NSMutaleArray、NSMutableDictonary与NSArray、NSDictonary的结尾相同，分别为Array及Dict，不做区分。</p>
+<h3 id="7-方法"><a href="#7-方法" class="headerlink" title="7.    方法"></a>7.    方法</h3><p><strong>（1）</strong>所有方法名命名的名称都要以小写字母开头，要求语义完整清晰，不要乱用简写。</p>
+<p><strong>（2）</strong> 在ViewController中，一个控件可能有多个事件 如果是事件的名称，则要先以对象名称加上对象的事件，如</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIButton</span> *nameButton;</div><div class="line"></div><div class="line"><span class="meta">#program mark - Event</span></div><div class="line"><span class="comment">//默认情况下 EventTouchUpInside 我们简写成 Pressed</span></div><div class="line">- (<span class="keyword">IBAction</span>) nameButtonPressed:(<span class="keyword">id</span>)sender;</div><div class="line"><span class="comment">//EventTouchDown</span></div><div class="line">- (<span class="keyword">IBAction</span>) nameButtonTouchDown:(<span class="keyword">id</span>)sender;</div></pre></td></tr></table></figure>
+<p><strong>（3）</strong> Action。 如果是在一个视图类中，一个控件的事件相对于这个视图类来说只是视图类的一个事件，则不需要以控件对像名称加上对像事件命名。 而是根据视图类来命名。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AbstractActionSheetPicker</span> : <span class="title">NSObject</span></span></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">UIBarButtonItem</span> *sysDoneButton = [<span class="keyword">self</span> createButtonWithType:<span class="built_in">UIBarButtonSystemItemDone</span> target:<span class="keyword">self</span></div><div class="line">                                                             action:<span class="keyword">@selector</span>(actionPickerDone:)];</div><div class="line">                                                             </div><div class="line">                                                             </div><div class="line"><span class="built_in">UIBarButtonItem</span> *sysCancelButton = [<span class="keyword">self</span> createButtonWithType:<span class="built_in">UIBarButtonSystemItemCancel</span> target:<span class="keyword">self</span></div><div class="line">                                                               action:<span class="keyword">@selector</span>(actionPickerCancel:)];</div><div class="line">                                                             </div><div class="line"></div><div class="line">- (<span class="keyword">IBAction</span>)actionPickerDone:(<span class="keyword">id</span>)sender</div><div class="line">&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">IBAction</span>)actionPickerCancel:(<span class="keyword">id</span>)sender</div><div class="line">&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="8-宏宏全部用大写，并且用必要的下划线分开，如"><a href="#8-宏宏全部用大写，并且用必要的下划线分开，如" class="headerlink" title="8.宏宏全部用大写，并且用必要的下划线分开，如"></a>8.宏宏全部用大写，并且用必要的下划线分开，如</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#define NAME_VALUE  @<span class="meta-string">"dddd"</span></span></div><div class="line"><span class="meta">#define MAXSIZE     30</span></div></pre></td></tr></table></figure>
+<h3 id="9-常量常量用字母-k-开头，-如"><a href="#9-常量常量用字母-k-开头，-如" class="headerlink" title="9.常量常量用字母 k 开头， 如"></a>9.常量常量用字母 k 开头， 如</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">NSUInteger</span> kUsernameRow = <span class="number">0</span>;</div></pre></td></tr></table></figure>
+<h3 id="10-代码风格"><a href="#10-代码风格" class="headerlink" title="10.    代码风格"></a>10.    代码风格</h3><p>代码风格与版式代码风格的重要性怎么强调都不过分。一段稍长一点的无格式代码基本上就是不可读的。 先来看一下这方面的整体原则：</p>
+<ul>
+<li><strong>空行的使用</strong><br>空行起着分隔程序段落的作用。空行得体（不过多也不过少）将使程序的布局更加清晰。空行不会浪费内存，虽然打印含有空行的程序是会多消耗一些纸张，但是值得。所以不要舍不得用空行。 这里不做规定，视自己的风格而定<em> <strong>语句与代码行</strong>  一行代码只做一件事情，如只定义一个变量，或只写一条语句。这样的代码容易阅读，并且方便于写注释。“if”、“for”、“while”、“try”、“catch”等语句自占一行，执行语句不得紧跟其后。不论执行语句有多少都要加 “{ }” 。这样可以防止书写和修改代码时出现失误。 </em> <strong>缩进和对齐</strong>  程序的分界符 “{” 和 “}” 的格式如下所示：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">* <span class="keyword">while</span>(<span class="number">1</span>)&#123;<span class="comment">//statement	for(int i=0;i&lt;=n;i++)&#123;		//statement	&#125;&#125;</span></div><div class="line">  ```以上风格是约定风格，而下面风格则不提倡。```objcwhile(<span class="number">1</span>)&#123;<span class="comment">//statement	for(int i=0;i&lt;=n;i++)	&#123;		//statement	&#125;&#125;</span></div></pre></td></tr></table></figure>
+<p>“{ }” 之内的代码块在 “{” 右边一个制表符（4个半角空格符，直接按键盘上的Tab键来进行控制）处左对齐。</p>
+<ul>
+<li><p><strong>最大长度</strong>  代码行最大长度宜控制在80个字符以内。代码行不要过长，否则眼睛看不过来，也不便于打印。不过此规则可以视情况适当放宽。 </p>
+</li>
+<li><p><strong>空格的使用</strong>  关键字之后要留空格。象NSInteger等关键字之后至少要留一个空格；其余的不做要求，如for语句里面的几条语句、&amp;&amp;、||等。</p>
+</li>
+<li><p><strong>修饰符的位置</strong>  为便于理解，应当将修饰符 “<em>” 和 “&amp;” 紧靠变量，例如`NSString </em>testString<code>、</code>NSArray *testArray`等 </p>
+</li>
+<li><p><strong>注释</strong>  注释的位置应与被描述的代码相邻，可以放在代码的上方或右方，不可放在下方。 边写代码边注释，修改代码同时修改相应的注释，以保证注释与代码的一致性。不再有用的注释要删除。 注释应当准确、易懂，防止注释有二义性。错误的注释不但无益反而有害。 当代码比较长，特别是有多重嵌套时，应当在一些段落的结束处加注释，便于阅读。对于<strong>业务逻辑</strong>，常用的<strong>枚举数据</strong>,或者<strong>代码对应的参数</strong>一定要有说明，如</p>
+</li>
+</ul>
+<p>​<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">*  设置类型</div><div class="line">     *</div><div class="line">*  @param type  类型 0 公有，1 私有</div><div class="line">      *</div><div class="line">*  @created by 谢躜 on 2015-01-21 18:47:24</div><div class="line">      */</div><div class="line">- (<span class="keyword">void</span>)setType:(<span class="built_in">NSInteger</span>)type</div><div class="line">  &#123;</div><div class="line">    <span class="keyword">if</span>(<span class="number">0</span> == type)&#123;</div><div class="line">        <span class="comment">//当类型为公有的时候</span></div><div class="line">        ...</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">1</span> == type)&#123;</div><div class="line">        <span class="comment">//当类型为私有的时候</span></div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="11-h文件组织"><a href="#11-h文件组织" class="headerlink" title="11. h文件组织"></a>11. h文件组织</h3><p><strong>类 interface</strong> h文件中分别依次列出<strong>属性</strong>，<strong>方法</strong>。</p>
+<p>​<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">DateilViewController</span> : <span class="title">UIViewController</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//变量</span></div><div class="line">    <span class="built_in">NSString</span> *_dataString;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//属性</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSDictionary</span> *supplyDateilDict;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span> *supplyArray;</div><div class="line"></div><div class="line"><span class="comment">//方法</span></div><div class="line">- (<span class="keyword">void</span>)handleData;</div><div class="line">- (<span class="keyword">void</span>)createView;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p><strong>协议 protocol</strong> ,依次列出 <code>@required</code>,<code>@optional</code> 和</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">UITableViewDataSource</span>&lt;<span class="title">NSObject</span>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">@required</span></div><div class="line"></div><div class="line">- (<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section;</div><div class="line"></div><div class="line"><span class="comment">// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:</span></div><div class="line"><span class="comment">// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)</span></div><div class="line"></div><div class="line">- (<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath;</div><div class="line"></div><div class="line"><span class="keyword">@optional</span></div><div class="line"></div><div class="line">- (<span class="built_in">NSInteger</span>)numberOfSectionsInTableView:(<span class="built_in">UITableView</span> *)tableView;              <span class="comment">// Default is 1 if not implemented</span></div><div class="line"></div><div class="line">- (<span class="built_in">NSString</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView titleForHeaderInSection:(<span class="built_in">NSInteger</span>)section;    <span class="comment">// fixed font style. use custom view (UILabel) if you want something different</span></div><div class="line">- (<span class="built_in">NSString</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView titleForFooterInSection:(<span class="built_in">NSInteger</span>)section;</div><div class="line"></div><div class="line"><span class="comment">// Editing</span></div><div class="line"></div><div class="line"><span class="comment">// Individual rows can opt out of having the -editing property set for them. If not implemented, all rows are assumed to be editable.</span></div><div class="line">- (<span class="built_in">BOOL</span>)tableView:(<span class="built_in">UITableView</span> *)tableView canEditRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath;</div><div class="line"></div><div class="line"><span class="comment">// Moving/reordering</span></div><div class="line"></div><div class="line"><span class="comment">// Allows the reorder accessory view to optionally be shown for a particular row. By default, the reorder control will be shown only if the datasource implements -tableView:moveRowAtIndexPath:toIndexPath:</span></div><div class="line">- (<span class="built_in">BOOL</span>)tableView:(<span class="built_in">UITableView</span> *)tableView canMoveRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath;</div><div class="line"></div><div class="line"><span class="comment">// Index</span></div><div class="line"></div><div class="line">- (<span class="built_in">NSArray</span> *)sectionIndexTitlesForTableView:(<span class="built_in">UITableView</span> *)tableView;                                                    <span class="comment">// return list of section titles to display in section index view (e.g. "ABCD...Z#")</span></div><div class="line">- (<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView sectionForSectionIndexTitle:(<span class="built_in">NSString</span> *)title atIndex:(<span class="built_in">NSInteger</span>)index;  <span class="comment">// tell table which section corresponds to section title/index (e.g. "B",1))</span></div><div class="line"></div><div class="line"><span class="comment">// Data manipulation - insert and delete support</span></div><div class="line"></div><div class="line"><span class="comment">// After a row has the minus or plus button invoked (based on the UITableViewCellEditingStyle for the cell), the dataSource must commit the change</span></div><div class="line"><span class="comment">// Not called for edit actions using UITableViewRowAction - the action's handler will be invoked instead</span></div><div class="line">- (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView commitEditingStyle:(<span class="built_in">UITableViewCellEditingStyle</span>)editingStyle forRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath;</div><div class="line"></div><div class="line"><span class="comment">// Data manipulation - reorder / moving support</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView moveRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)sourceIndexPath toIndexPath:(<span class="built_in">NSIndexPath</span> *)destinationIndexPath;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<h3 id="12-m文件组织"><a href="#12-m文件组织" class="headerlink" title="12. m文件组织"></a>12. m文件组织</h3><p><img src="http://upload-images.jianshu.io/upload_images/139705-f52ce7bee92cad47.png" alt="ViewController"></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*Class 的生命周期</span></div><div class="line">* Class 生命周期回调方法放在最前面</div><div class="line">*/</div><div class="line"><span class="meta">#pragma mark - Lifecircle</span></div><div class="line"></div><div class="line">- (<span class="keyword">id</span>)initWithNibName:(<span class="built_in">NSString</span> *)nibNameOrNil bundle:(<span class="built_in">NSBundle</span> *)nibBundleOrNil</div><div class="line">&#123;  </div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad</div><div class="line">&#123;  </div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidDisappear:(<span class="built_in">BOOL</span>)animated</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)didReceiveMemoryWarning</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)dealloc</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 所有的控件事件放在生命周期后面</span></div><div class="line">* 包括 Event ,Action,Notifation</div><div class="line">* 如果是相近的方法用program mark 分类。排在一起。 </div><div class="line">*/</div><div class="line"><span class="meta">#pragma mark - Event</span></div><div class="line">- (<span class="keyword">void</span>)backAction</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)selectTabbarButton:(<span class="built_in">UIButton</span> *)sender</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (<span class="keyword">void</span>)reachabilityChanged:(<span class="built_in">NSNotification</span> *)note</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">#pragma mark KeyBoardNotify</span></div><div class="line">- (<span class="keyword">void</span>)keyboardWillChange:(<span class="built_in">NSNotification</span> *)note</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)keyboardShowNotify:(<span class="built_in">NSNotification</span> *)note</div><div class="line">&#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"><span class="comment">//键盘隐藏调整界面</span></div><div class="line">- (<span class="keyword">void</span>)keyboardHideNotify:(<span class="built_in">NSNotification</span> *)note</div><div class="line">&#123;</div><div class="line">  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*其它方法分为两部分， </span></div><div class="line">* 第一部分是数据模型操作相关的方法</div><div class="line">* 第二部分为视图，控件相关操作 </div><div class="line">*/</div><div class="line"><span class="meta">#pragma mark - Fouction</span></div><div class="line"></div><div class="line"><span class="meta">#pragma mark - HandleModal</span></div><div class="line">- (<span class="keyword">void</span>)getSupplyDateilData </div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 时间转换</span></div><div class="line">- (<span class="built_in">NSString</span> *)showTimeWithValue:(<span class="built_in">NSTimeInterval</span>)time </div><div class="line">&#123;   </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//添加一个安排</span></div><div class="line">- (<span class="keyword">void</span>)addArrange</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#pragma mark  HandleView</span></div><div class="line">- (<span class="keyword">void</span>)creatDateilView</div><div class="line">&#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"><span class="comment">// 显示土地信息</span></div><div class="line">- (<span class="keyword">void</span>)creatDateilInformationView</div><div class="line">&#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)createAdvertisementView </div><div class="line">&#123; </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">* 其它协议，委托，数据源方法没有固定顺序，用到了就加到后面</div><div class="line">*/</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#pragma mark -UITableViewDataSource</span></div><div class="line">- (<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSInteger</span>)numberOfSectionsInTableView:(<span class="built_in">UITableView</span> *)tableView</div><div class="line">&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section &#123;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  </div><div class="line"><span class="meta">#pragma mark -UITableViewDelegate</span></div><div class="line">- (<span class="built_in">CGFloat</span>)tableView:(<span class="built_in">UITableView</span> *)tableView heightForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView didSelectRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</div><div class="line">&#123;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ios/">ios</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发/">开发</a></li></ul>
+
+      
+        
+	<div id="comment">
+	
+	<!-- 多说评论框 start -->
+	 <div class="ds-thread" data-thread-key="/2015/01/22/iphone编码规范与指导/" data-title="object-c 编码规范与指导" data-url="https://xiezuan.github.io/2015/01/22/iphone编码规范与指导/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"carewhat"};
+	  (function() {
+	    var ds = document.createElement('script');
+	    ds.type = 'text/javascript';ds.async = true;
+	    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	    ds.charset = 'UTF-8';
+	    (document.getElementsByTagName('head')[0] 
+	     || document.getElementsByTagName('body')[0]).appendChild(ds);
+	  })();
+	  </script>
+	<!-- 多说公共JS代码 end -->
+	
+	</div>
+	<link rel="stylesheet" href="/css/comment.css">
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/13/XCode-7-到-XCode8-的迁移/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          XCode 7 到 XCode8 的迁移
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/17/关于ARC模式下内存的释放问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">关于ARC模式下内存的释放问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文档版本"><span class="toc-number">1.</span> <span class="toc-text">文档版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件结构"><span class="toc-number">2.</span> <span class="toc-text">文件结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-文件头说明"><span class="toc-number">2.1.</span> <span class="toc-text">1.文件头说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-头文件的引用说明"><span class="toc-number">2.2.</span> <span class="toc-text">3.头文件的引用说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-文件的组织结构"><span class="toc-number">2.3.</span> <span class="toc-text">4.文件的组织结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-h，m，nib文件名命名"><span class="toc-number">2.4.</span> <span class="toc-text">5.h，m，nib文件名命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-变量"><span class="toc-number">2.5.</span> <span class="toc-text">6.    变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-方法"><span class="toc-number">2.6.</span> <span class="toc-text">7.    方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-宏宏全部用大写，并且用必要的下划线分开，如"><span class="toc-number">2.7.</span> <span class="toc-text">8.宏宏全部用大写，并且用必要的下划线分开，如</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-常量常量用字母-k-开头，-如"><span class="toc-number">2.8.</span> <span class="toc-text">9.常量常量用字母 k 开头， 如</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-代码风格"><span class="toc-number">2.9.</span> <span class="toc-text">10.    代码风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-h文件组织"><span class="toc-number">2.10.</span> <span class="toc-text">11. h文件组织</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-m文件组织"><span class="toc-number">2.11.</span> <span class="toc-text">12. m文件组织</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2016 xiezuan&#39;s blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+  
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+</body>
+</html>

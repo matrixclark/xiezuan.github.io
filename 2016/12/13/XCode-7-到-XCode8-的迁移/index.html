@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>xcode 7 到 xcode8 的迁移 | xiezuan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="swift" />
+  
+  
+  
+  
+  <meta name="description" content="每年ios升级都是一个很头痛的问题， ios升了，XCode也升了。有时甚至你还需要把电脑的macOS先升了才能安装对应版本的XCode
+只在写 ObjectiveC的时候一般也只是把XCode升完后，少数API 方法改改，这次7 到8 ，Swift2 到了3 ，还真是很痛。好在XCode8 还是支持 Swift 2.3的。
+这两天把一个项目升能XCode简直就是搞得生无所恋。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XCode 7 到 XCode8 的迁移">
+<meta property="og:url" content="https://xiezuan.github.io/2016/12/13/XCode-7-到-XCode8-的迁移/index.html">
+<meta property="og:site_name" content="xiezuan's blog">
+<meta property="og:description" content="每年ios升级都是一个很头痛的问题， ios升了，XCode也升了。有时甚至你还需要把电脑的macOS先升了才能安装对应版本的XCode
+只在写 ObjectiveC的时候一般也只是把XCode升完后，少数API 方法改改，这次7 到8 ，Swift2 到了3 ，还真是很痛。好在XCode8 还是支持 Swift 2.3的。
+这两天把一个项目升能XCode简直就是搞得生无所恋。">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006tNbRwgw1faqm8bxu2xj30ku080jry.jpg">
+<meta property="og:updated_time" content="2016-12-14T13:00:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XCode 7 到 XCode8 的迁移">
+<meta name="twitter:description" content="每年ios升级都是一个很头痛的问题， ios升了，XCode也升了。有时甚至你还需要把电脑的macOS先升了才能安装对应版本的XCode
+只在写 ObjectiveC的时候一般也只是把XCode升完后，少数API 方法改改，这次7 到8 ，Swift2 到了3 ，还真是很痛。好在XCode8 还是支持 Swift 2.3的。
+这两天把一个项目升能XCode简直就是搞得生无所恋。">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/006tNbRwgw1faqm8bxu2xj30ku080jry.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="xiezuan&#39;s blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+<body>
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            <a href="http://demo.athemes.com/hiero/" title="Hiero" rel="home">
+              xiezuan&#39;s blog</a>
+          </h1>
+          <div class="site-description">学习总结 思考感悟 知识管理</div>
+
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">标签</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div style="background:#fff;width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;">
+        <img width="100%" alt="Hike News" src="/css/images/pose.jpg">
+      </div>
+
+  </div>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-XCode-7-到-XCode8-的迁移" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="http://ww2.sinaimg.cn/large/006tNbRwgw1faqm8bxu2xj30ku080jry.jpg" rel="gallery_ciwp0xf2q00014coo15e9vdb1">
+        <img src="http://ww2.sinaimg.cn/large/006tNbRwgw1faqm8bxu2xj30ku080jry.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      XCode 7 到 XCode8 的迁移
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/12/13/XCode-7-到-XCode8-的迁移/" class="article-date">
+	  <time datetime="2016-12-13T14:12:35.000Z" itemprop="datePublished">十二月 13, 2016</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/swift/">swift</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://ww2.sinaimg.cn/large/006tNbRwgw1faqm8bxu2xj30ku080jry.jpg" alt=""></p>
+<p>每年ios升级都是一个很头痛的问题， ios升了，XCode也升了。有时甚至你还需要把电脑的macOS先升了才能安装对应版本的XCode</p>
+<p>只在写 ObjectiveC的时候一般也只是把XCode升完后，少数API 方法改改，这次7 到8 ，Swift2 到了3 ，还真是很痛。好在XCode8 还是支持 Swift 2.3的。</p>
+<p>这两天把一个项目升能XCode简直就是搞得生无所恋。</p>
+<a id="more"></a>
+<h2 id="升不升-Swift3"><a href="#升不升-Swift3" class="headerlink" title="升不升 Swift3"></a>升不升 Swift3</h2><p>如果你用到的第三方库都已经支持Swift3，并且只是语法上的小调整不影响太多api的话，当然是建议升到Swift3 ，毕竟你的项目可能还要支持到 ios11 + ,以后的Xcode可能就不支持Swift2了</p>
+<p><strong>但是！！</strong> 如果你第三方库的Swift3版本整个颠覆了原来的API，并且你还重度使用老版本的话，那你还是放弃吧。比如 <code>ReactiveCocoa4</code> 到 <code>ReactiveCocoa 5</code> ,<a href="http://www.cocoachina.com/ios/20161116/18104.html" target="_blank" rel="external">ReactiveCocoa 5.0 初窥：可能是最痛的一次升级</a></p>
+<h2 id="迁移过程"><a href="#迁移过程" class="headerlink" title="迁移过程"></a>迁移过程</h2><p>这里讲的是使用Swift2.3的迁移动程</p>
+<p>1.当使用XCode8打开原来的项目，会弹出下面的窗口</p>
+<p><img src="http://ww1.sinaimg.cn/large/006y8lVagw1fan9708b8wj30my0c0tb0.jpg" alt=""></p>
+<p>我们先选择Later </p>
+<p>2.修改Podfile 第三方依赖库，把所有的项目都设置成支持Swift 2.3，然后pod update</p>
+<p>3.设置对应项目，使用Swift2.3</p>
+<p><img src="http://ww3.sinaimg.cn/large/006y8lVagw1fan9twsyemj313m0tu0zo.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/swift/">swift</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swift/">swift</a></li></ul>
+
+      
+        
+	<div id="comment">
+	
+	<!-- 多说评论框 start -->
+	 <div class="ds-thread" data-thread-key="/2016/12/13/XCode-7-到-XCode8-的迁移/" data-title="XCode 7 到 XCode8 的迁移" data-url="https://xiezuan.github.io/2016/12/13/XCode-7-到-XCode8-的迁移/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"carewhat"};
+	  (function() {
+	    var ds = document.createElement('script');
+	    ds.type = 'text/javascript';ds.async = true;
+	    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	    ds.charset = 'UTF-8';
+	    (document.getElementsByTagName('head')[0] 
+	     || document.getElementsByTagName('body')[0]).appendChild(ds);
+	  })();
+	  </script>
+	<!-- 多说公共JS代码 end -->
+	
+	</div>
+	<link rel="stylesheet" href="/css/comment.css">
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/01/22/iphone编码规范与指导/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">object-c 编码规范与指导</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#升不升-Swift3"><span class="toc-number">1.</span> <span class="toc-text">升不升 Swift3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迁移过程"><span class="toc-number">2.</span> <span class="toc-text">迁移过程</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2016 xiezuan&#39;s blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+  
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+</body>
+</html>
