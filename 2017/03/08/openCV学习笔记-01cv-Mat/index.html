@@ -3,32 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>hexo3 的基本使用方法 | xiezuan&#39;s blog</title>
+  <title>opencv学习笔记-01cv-mat | xiezuan&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="hexo" />
+  <meta name="keywords" content="openCV" />
   
   
   
   
-  <meta name="description" content="安装方法安装方法这里不做过多介绍，可以参考   Hexo的安装与部署
-用npm安装话经常出现卡住而导致无法正常安装，解决办法就是修改npm的安装源
-1npm --registry http://registry.cnpmjs.org info underscore">
+  <meta name="description" content="cv::Mat 结构cv::Mat 是 openCV 里面图像的结构如果是灰度图， img.at&amp;lt;uchar&amp;gt;(x,y) 就代表一个像素点，反之彩色图像img.at&amp;lt;cv::Vec3b&amp;gt;(i,j)代表一个像素点，每个点由rgb三个颜色来显示。  同时还有Vec2b（二元素向量值）和Vec4b（四元素向量值）
+123456789 CV::Mat img; if(img.cha">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo3 的基本使用方法">
-<meta property="og:url" content="https://xiezuan.github.io/2016/12/16/Hexo3-的基本使用方法/index.html">
+<meta property="og:title" content="openCV学习笔记-01cv-Mat">
+<meta property="og:url" content="https://xiezuan.github.io/2017/03/08/openCV学习笔记-01cv-Mat/index.html">
 <meta property="og:site_name" content="xiezuan's blog">
-<meta property="og:description" content="安装方法安装方法这里不做过多介绍，可以参考   Hexo的安装与部署
-用npm安装话经常出现卡住而导致无法正常安装，解决办法就是修改npm的安装源
-1npm --registry http://registry.cnpmjs.org info underscore">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006tNc79gw1fasepi8hm5j31kw0lqgn9.jpg">
-<meta property="og:updated_time" content="2016-12-16T02:31:26.000Z">
+<meta property="og:description" content="cv::Mat 结构cv::Mat 是 openCV 里面图像的结构如果是灰度图， img.at&amp;lt;uchar&amp;gt;(x,y) 就代表一个像素点，反之彩色图像img.at&amp;lt;cv::Vec3b&amp;gt;(i,j)代表一个像素点，每个点由rgb三个颜色来显示。  同时还有Vec2b（二元素向量值）和Vec4b（四元素向量值）
+123456789 CV::Mat img; if(img.cha">
+<meta property="og:updated_time" content="2017-03-23T07:49:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo3 的基本使用方法">
-<meta name="twitter:description" content="安装方法安装方法这里不做过多介绍，可以参考   Hexo的安装与部署
-用npm安装话经常出现卡住而导致无法正常安装，解决办法就是修改npm的安装源
-1npm --registry http://registry.cnpmjs.org info underscore">
-<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/006tNc79gw1fasepi8hm5j31kw0lqgn9.jpg">
+<meta name="twitter:title" content="openCV学习笔记-01cv-Mat">
+<meta name="twitter:description" content="cv::Mat 结构cv::Mat 是 openCV 里面图像的结构如果是灰度图， img.at&amp;lt;uchar&amp;gt;(x,y) 就代表一个像素点，反之彩色图像img.at&amp;lt;cv::Vec3b&amp;gt;(i,j)代表一个像素点，每个点由rgb三个颜色来显示。  同时还有Vec2b（二元素向量值）和Vec4b（四元素向量值）
+123456789 CV::Mat img; if(img.cha">
   
     <link rel="alternate" href="/atom.xml" title="xiezuan&#39;s blog" type="application/atom+xml">
   
@@ -105,25 +100,15 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-Hexo3-的基本使用方法" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-openCV学习笔记-01cv-Mat" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
-<div class="article-gallery">
-  <div class="article-gallery-photos">
-    
-      <a class="article-gallery-img fancybox" href="http://ww4.sinaimg.cn/large/006tNc79gw1fasepi8hm5j31kw0lqgn9.jpg" rel="gallery_cj0m3l65100007aooenp2dfoi">
-        <img src="http://ww4.sinaimg.cn/large/006tNc79gw1fasepi8hm5j31kw0lqgn9.jpg" itemprop="image">
-      </a>
-    
-  </div>
-</div>
-
     
       <header class="article-header">
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      Hexo3 的基本使用方法
+      openCV学习笔记-01cv-Mat
     </h1>
   
 
@@ -131,49 +116,40 @@
     
     <div class="article-meta">
       
-	<a href="/2016/12/16/Hexo3-的基本使用方法/" class="article-date">
-	  <time datetime="2016-12-16T02:04:54.000Z" itemprop="datePublished">十二月 16, 2016</time>
+	<a href="/2017/03/08/openCV学习笔记-01cv-Mat/" class="article-date">
+	  <time datetime="2017-03-08T12:04:59.000Z" itemprop="datePublished">三月 8, 2017</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/其它/">其它</a>
+    <a class="article-category-link" href="/categories/笔记/">笔记</a>
 
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h3><p>安装方法这里不做过多介绍，可以参考   <a href="http://www.jianshu.com/p/b7886271e21a" target="_blank" rel="external">Hexo的安装与部署</a></p>
-<p>用npm安装话经常出现卡住而导致无法正常安装，解决办法就是修改npm的安装源</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm --registry http://registry.cnpmjs.org info underscore</div></pre></td></tr></table></figure>
+        <h2 id="cv-Mat-结构"><a href="#cv-Mat-结构" class="headerlink" title="cv::Mat 结构"></a>cv::Mat 结构</h2><p><strong>cv::Mat</strong> 是 openCV 里面图像的结构<br>如果是灰度图， <code>img.at&lt;uchar&gt;(x,y)</code> 就代表一个像素点，反之彩色图像<code>img.at&lt;cv::Vec3b&gt;(i,j)</code>代表一个像素点，每个点由rgb三个颜色来显示。  同时还有Vec2b（二元素向量值）和Vec4b（四元素向量值）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> CV::Mat img;</div><div class="line"> if(img.channels() == 1) &#123; //灰度图</div><div class="line">            img.at&lt;uchar&gt;(i,j)= 255;</div><div class="line">        &#125;else&#123;</div><div class="line">            img.at&lt;cv::Vec3b&gt;(i,j)[0] = 255;</div><div class="line">            img.at&lt;cv::Vec3b&gt;(i,j)[1] = 255;</div><div class="line">            img.at&lt;cv::Vec3b&gt;(i,j)[2] = 255;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>cv::Mat 需要通过模版参数来确认类型。 可以直接申明和使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CV::Mat_ &lt;uchar&gt; grayImage;</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="基本使用命令"><a href="#基本使用命令" class="headerlink" title="基本使用命令"></a>基本使用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo new <span class="string">"title"</span>   //一篇新的文章 ，可以通过 /scaffolds/post.md 修改创建模版</div><div class="line">hexo g   //生成网页</div><div class="line">hexo s   //本地服务运行</div><div class="line">hexo d   //部署</div></pre></td></tr></table></figure>
-<h3 id="部署失败"><a href="#部署失败" class="headerlink" title="部署失败"></a>部署失败</h3><p>hexo3 部署做了调整，需要安装hexo关于git管理组件：hexo-delopyer-git，照着做即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git //将git替换为别的名字就可以安装对应模块</div></pre></td></tr></table></figure>
-<p>_config.yaml 的 deploy 下做修改</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> git</div><div class="line"><span class="attr">  repo:</span> http://github.com/xiezuan/xiezuan.github.io.git</div><div class="line"><span class="attr">  branch:</span> master</div></pre></td></tr></table></figure>
-<h3 id="同时部署-github-和-coding"><a href="#同时部署-github-和-coding" class="headerlink" title="同时部署 github 和 coding"></a>同时部署 github 和 coding</h3><h4 id="1-创建github-pages"><a href="#1-创建github-pages" class="headerlink" title="1.创建github pages"></a>1.创建github pages</h4><p>git 官方参考地址: <a href="https://pages.github.com/" target="_blank" rel="external">https://pages.github.com</a></p>
-<p>创建仓库的时候仓库名一定严格按照 <code>git用户名</code>.<code>github</code>.<code>io</code> 来命名    </p>
-<h4 id="2-创建coding-pages"><a href="#2-创建coding-pages" class="headerlink" title="2.创建coding pages"></a>2.创建coding pages</h4><p><a href="https://coding.net/help/doc/pages/getting-started.html" target="_blank" rel="external">coding创建 page的方法</a></p>
-<h4 id="3-配置部署文件"><a href="#3-配置部署文件" class="headerlink" title="3.配置部署文件"></a>3.配置部署文件</h4><p>基本配置如下： 在_config.yaml  的 deploy 下做修改。  可以参考 <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">hexo deploy</a> </p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">- type:</span> git</div><div class="line"><span class="attr">  repo:</span> http://github.com/xiezuan/xiezuan.github.io.git</div><div class="line"><span class="attr">  branch:</span> master  </div><div class="line"><span class="attr">- type:</span> git</div><div class="line"><span class="attr">  repo:</span> https://git.coding.net/xiezuan/xiezuan.coding.me.git</div><div class="line"><span class="attr">  branch:</span> master</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/其它/">其它</a>
+    <a class="article-category-link" href="/categories/笔记/">笔记</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openCV/">openCV</a></li></ul>
 
       
         
 	<div id="comment">
 	
 	<!-- 多说评论框 start -->
-	 <div class="ds-thread" data-thread-key="/2016/12/16/Hexo3-的基本使用方法/" data-title="Hexo3 的基本使用方法" data-url="https://xiezuan.github.io/2016/12/16/Hexo3-的基本使用方法/"></div>
+	 <div class="ds-thread" data-thread-key="/2017/03/08/openCV学习笔记-01cv-Mat/" data-title="openCV学习笔记-01cv-Mat" data-url="https://xiezuan.github.io/2017/03/08/openCV学习笔记-01cv-Mat/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -201,19 +177,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/01/29/印像笔记留给你的空间/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/03/22/mac 下ssh 自动登录与连接保持工具 autossh/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          印像笔记留给你的空间-笔记
+          mac 下ssh 自动登录与连接保持工具 autossh
         
       </div>
     </a>
   
   
-    <a href="/2016/12/13/XCode-7-到-XCode8-的迁移/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/01/29/印像笔记留给你的空间/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">XCode 7 到 XCode8 的迁移</div>
+      <div class="article-nav-title">印像笔记留给你的空间-笔记</div>
     </a>
   
 </nav>
@@ -227,7 +203,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装方法"><span class="toc-number">1.</span> <span class="toc-text">安装方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本使用命令"><span class="toc-number">2.</span> <span class="toc-text">基本使用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署失败"><span class="toc-number">3.</span> <span class="toc-text">部署失败</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同时部署-github-和-coding"><span class="toc-number">4.</span> <span class="toc-text">同时部署 github 和 coding</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-创建github-pages"><span class="toc-number">4.1.</span> <span class="toc-text">1.创建github pages</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-创建coding-pages"><span class="toc-number">4.2.</span> <span class="toc-text">2.创建coding pages</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-配置部署文件"><span class="toc-number">4.3.</span> <span class="toc-text">3.配置部署文件</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cv-Mat-结构"><span class="toc-number">1.</span> <span class="toc-text">cv::Mat 结构</span></a></li></ol>
     
     </div>
   </aside>
