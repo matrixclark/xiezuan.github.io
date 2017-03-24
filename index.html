@@ -125,7 +125,7 @@
       
         
           <div class="entry-thumbnail">
-            <a href="/2017/03/23/常用的linux 命令/"><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1fdwt98khwvj30al07zq32.jpg" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+            <a href="/2017/03/23/常用的linux 命令/"><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1fdxmm4yv4zj30wi0kcq90.jpg" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
           </div>
           <div class="entry-summary">
           ssh连接
@@ -133,11 +133,79 @@
 断开
 1logout
 
-
+查看当前运行的服务命令
+12$ ps -ef //查看所有进程$ ps -ef|grep java //表示查看所有进程里CMD是java的进程信息
+效果
+1234567UID        PID  PPID  C STIME TTY          TIME CMDroot         1     0 ...
 
         
           <p class="article-more-link">
             <a href="/2017/03/23/常用的linux 命令/#more">阅读全文</a>
+          </p>
+        </div>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/开发/">开发</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-mac 下ssh 自动登录与连接保持工具 autossh"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/03/22/mac 下ssh 自动登录与连接保持工具 autossh/">mac 下ssh 自动登录与连接保持工具 autossh</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/22/mac 下ssh 自动登录与连接保持工具 autossh/" class="article-date">
+	  <time datetime="2017-03-22T02:34:59.000Z" itemprop="datePublished">三月 22, 2017</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/开发/">开发</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+          <div class="entry-thumbnail">
+            <a href="/2017/03/22/mac 下ssh 自动登录与连接保持工具 autossh/"><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1fdwt98khwvj30al07zq32.jpg" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+          </div>
+          <div class="entry-summary">
+          mac 用自带终端连接ssh 非常麻烦。在网上发现了autossh
+地址：https://github.com/wufeifei/autossh
+按作者的描述是在服务器安装expect ，用autossh 可以自动保持ssh不断开。但我测试了没有用…
+所以我们不用在服务器安装expect，只需配置本地ssh客户端的保持连接时间。
+
+保持自动连接在客户端中的/etc/ssh/ssh_ssh_c...
+
+        
+          <p class="article-more-link">
+            <a href="/2017/03/22/mac 下ssh 自动登录与连接保持工具 autossh/#more">阅读全文</a>
           </p>
         </div>
       
@@ -192,7 +260,7 @@
 
           
             <div class="entry-thumbnail">
-              <a href="/2017/03/08/openCV学习笔记-01cv-Mat/"><img src="http://lorempixel.com/750/450/city/5" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/2017/03/08/openCV学习笔记-01cv-Mat/"><img src="http://lorempixel.com/750/450/city/8" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             cv::Mat 结构cv::Mat 是 openCV 里面图像的结构如果是灰度图， img.at&lt;uchar&gt;(x,y) 就代表一个像素点，反之彩色图像img.at&lt;cv::Vec3b&gt;(i,j)代表一个像素点，每个点由rgb三个颜色来显示。  同时还有Vec2b（二元素向量值）和Vec4b（四元素向量值）
@@ -533,7 +601,7 @@
 
           
             <div class="entry-thumbnail">
-              <a href="/2015/01/17/关于ARC模式下内存的释放问题/"><img src="http://lorempixel.com/750/450/city/2" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/2015/01/17/关于ARC模式下内存的释放问题/"><img src="http://lorempixel.com/750/450/city/7" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             最近上海这边做了一个项目，由于上海的同事几乎没有工作经验，代码写得很乱，没有规范。应用在客户测试时出现各种问题，甚至是一些致命性的闪退问题，同事求助于我对代码做一些检查。发现现在学习IOS开发的人，自从有了ARC之后对内存管理完全没有概念。以为啥都不用管。
@@ -670,13 +738,28 @@
 
             
               <div class="widget-entry-thumbnail">
-                <a href="/2017/03/23/常用的linux 命令/" title=""><img width="50" height="50" src="https://ww2.sinaimg.cn/large/006tNbRwgy1fdwt98khwvj30al07zq32.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
+                <a href="/2017/03/23/常用的linux 命令/" title=""><img width="50" height="50" src="https://ww3.sinaimg.cn/large/006tNbRwgy1fdxmm4yv4zj30wi0kcq90.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
               </div>
               <div class="widget-entry-summary">
             
 
               <h6 style="margin: 0;"><a href="/2017/03/23/常用的linux 命令/">常用的linux 命令</a></h6>
               <span>三月 23, 2017</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-thumbnail">
+                <a href="/2017/03/22/mac 下ssh 自动登录与连接保持工具 autossh/" title=""><img width="50" height="50" src="https://ww2.sinaimg.cn/large/006tNbRwgy1fdwt98khwvj30al07zq32.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
+              </div>
+              <div class="widget-entry-summary">
+            
+
+              <h6 style="margin: 0;"><a href="/2017/03/22/mac 下ssh 自动登录与连接保持工具 autossh/">mac 下ssh 自动登录与连接保持工具 autossh</a></h6>
+              <span>三月 22, 2017</span>
             </div>
 
           </li>
@@ -735,21 +818,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-thumbnail">
-                <a href="/2015/01/22/iphone编码规范与指导/" title=""><img width="50" height="50" src="http://ww1.sinaimg.cn/large/006tNbRwgw1faqmgd2mlcj30sg0d2gmq.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
-              </div>
-              <div class="widget-entry-summary">
-            
-
-              <h6 style="margin: 0;"><a href="/2015/01/22/iphone编码规范与指导/">object-c 编码规范与指导</a></h6>
-              <span>一月 22, 2015</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -759,7 +827,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其它/">其它</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其它/">其它</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -769,7 +837,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openCV/">openCV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/印像笔记/">印像笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发/">开发</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openCV/">openCV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/印像笔记/">印像笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发/">开发</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -780,7 +848,7 @@
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
