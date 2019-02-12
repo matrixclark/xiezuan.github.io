@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="xiezuan's blog">
 <meta property="og:description" content="cv::Mat 结构cv::Mat 是 openCV 里面图像的结构如果是灰度图， img.at&amp;lt;uchar&amp;gt;(x,y) 就代表一个像素点，反之彩色图像img.at&amp;lt;cv::Vec3b&amp;gt;(i,j)代表一个像素点，每个点由rgb三个颜色来显示。  同时还有Vec2b（二元素向量值）和Vec4b（四元素向量值）
 123456789 CV::Mat img; if(img.cha">
-<meta property="og:updated_time" content="2017-03-23T07:49:08.000Z">
+<meta property="og:updated_time" content="2017-05-19T01:02:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="openCV学习笔记-01cv-Mat">
 <meta name="twitter:description" content="cv::Mat 结构cv::Mat 是 openCV 里面图像的结构如果是灰度图， img.at&amp;lt;uchar&amp;gt;(x,y) 就代表一个像素点，反之彩色图像img.at&amp;lt;cv::Vec3b&amp;gt;(i,j)代表一个像素点，每个点由rgb三个颜色来显示。  同时还有Vec2b（二元素向量值）和Vec4b（四元素向量值）
@@ -132,6 +132,10 @@
 <p>cv::Mat 需要通过模版参数来确认类型。 可以直接申明和使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CV::Mat_ &lt;uchar&gt; grayImage;</div></pre></td></tr></table></figure>
 <a id="more"></a>
+<h2 id="遍历图像和领域操作"><a href="#遍历图像和领域操作" class="headerlink" title="遍历图像和领域操作"></a>遍历图像和领域操作</h2><h3 id="锐化操作"><a href="#锐化操作" class="headerlink" title="锐化操作"></a>锐化操作</h3><p>对图像锐化，基于拉普拉斯算子，将一副图像减去拉普拉斯滤波之后的图像，这副图像的边缘部分将得到放大。细节更加锐利，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sharped_pixel = <span class="number">5</span>*current - left - right - up -down;</div></pre></td></tr></table></figure>
+<p>current (当前像素)，L,R,U,D 代表 四边四个像素</p>
+<p>​    </p>
 
       
     </div>
@@ -203,7 +207,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cv-Mat-结构"><span class="toc-number">1.</span> <span class="toc-text">cv::Mat 结构</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cv-Mat-结构"><span class="toc-number">1.</span> <span class="toc-text">cv::Mat 结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遍历图像和领域操作"><span class="toc-number">2.</span> <span class="toc-text">遍历图像和领域操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#锐化操作"><span class="toc-number">2.1.</span> <span class="toc-text">锐化操作</span></a></li></ol></li></ol>
     
     </div>
   </aside>
@@ -215,7 +219,7 @@
 
   <div class="clearfix container">
       <div class="site-info">
-	      &copy; 2017 xiezuan&#39;s blog All Rights Reserved.
+	      &copy; 2019 xiezuan&#39;s blog All Rights Reserved.
       </div>
       <div class="site-credit">
         Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
