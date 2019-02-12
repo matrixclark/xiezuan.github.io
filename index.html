@@ -96,289 +96,6 @@
         
           <section id="main">
   
-    <article id="post-Interview-Question-Answer"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/01/01/Interview-Question-Answer/">Interview-Question &amp; Answer</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/01/01/Interview-Question-Answer/" class="article-date">
-	  <time datetime="2018-01-01T13:57:11.000Z" itemprop="datePublished">一月 1, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ios/">ios</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Interview-Question-amp-Answer"><a href="#Interview-Question-amp-Answer" class="headerlink" title="Interview-Question &amp; Answer"></a>Interview-Question &amp; Answer</h1><h3 id="初级篇完结"><a href="#初级篇完结" class="headerlink" title="初级篇完结"></a>初级篇完结</h3><p>起初乍一看感觉问题并不是很多，通过总结才发现面试官的准备十分充分，涵盖了很多方面，在总结的过程中，我也等于是复习了一遍。</p>
-<p>目前针对初级篇的问题大致总结了一下，我看了中级以及高级的题目，<strong>大致分为以下几类</strong>：</p>
-<ul>
-<li><strong>Runtime</strong>  <a href="http://yulingtianxia.com/blog/2014/11/05/objective-c-runtime/" target="_blank" rel="external">参考文章即可</a></li>
-<li><strong>RunLoop</strong>  <a href="https://blog.ibireme.com/2015/05/18/runloop/" target="_blank" rel="external">参考文章即可</a></li>
-<li><strong>Block</strong>    <a href="https://www.jianshu.com/p/14efa33b3562" target="_blank" rel="external">参考文章即可</a></li>
-<li><strong>KVC &amp; KVO</strong> <a href="https://github.com/liberalisman/KVC-KVO" target="_blank" rel="external">我的另一篇文章</a></li>
-<li><strong>三方框架的源代码解析（AFN、SDWebImage…)</strong></li>
-<li><strong>数据结构</strong></li>
-</ul>
-<p><strong>再加上是基础题目里也有很多值得拓展的问题</strong></p>
-<ul>
-<li><strong>内存管理</strong></li>
-<li><strong>数据持久化</strong></li>
-<li><strong>多线程</strong></li>
-<li><strong>属性修饰符</strong></li>
-<li><strong>内存语义。。。。</strong></li>
-</ul>
-<p>关于中高级的问题，我会接下来做仔细的分析，我心里并没有十足的把握，或许上面的回答也是漏洞百出，但是希望各位同行能多多指教，指出我的不足，在此先行谢过。</p>
-<p>在整理这篇答案的时候，借鉴了很多网上的资料，很杂，也很难一一列出。</p>
-<p>喵神的关于<code>storyBoard</code>那篇</p>
-<p>链接在此：<a href="https://onevcat.com/2017/04/storyboard-argue/" target="_blank" rel="external">再看关于 Storyboard 的一些争论</a></p>
-<hr>
-<p>此篇是根据知名博主 <a href="http://weibo.com/u/1929625262?from=feed&amp;loc=nickname" target="_blank" rel="external">J-Knight</a> 所提供的面试题目，所整理的答案，感谢 <a href="http://weibo.com/u/1929625262?from=feed&amp;loc=nickname" target="_blank" rel="external">J-Knight</a> 的分享，<a href="https://juejin.im/post/5938dfdb8d6d810058481572?utm_source=weibo&amp;utm_campaign=user。" target="_blank" rel="external">点击查看原文。</a> </p>
-<p>另外，我写此文的目的在于和广大的<code>iOS</code>开发者进行沟通交流，里面的内容有自己的理解，也有很大一部分参照网上的解释。很感谢之前的分享者，文末会附上相关的链接。如果在本文有理解不正确的地方，也希望大家多多指正。</p>
-<p>面试题分为三个部分，我们先从基础开始。</p>
-<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="1-为什么说Objective-C是一门动态的语言？"><a href="#1-为什么说Objective-C是一门动态的语言？" class="headerlink" title="1. 为什么说Objective-C是一门动态的语言？"></a>1. 为什么说Objective-C是一门动态的语言？</h3><p>其实<code>Objective-C</code>是一门动态语言的用<code>运行时Runtime</code>可以更好地说明，但我看后面还有关于<code>运行时</code>的问题，在此处就先不展开了。</p>
-<pre><code>1. 动态类型：例如“id”类型，动态类型属于弱类型，在运行时才决定消息的接收者
-2. 动态绑定：程序在运行时需要调用什么代码是在运行时决定的，而不是在编译时。
-3. 动态载入：程序在运行时的代码模块以及相关资源是在运行时添加的，而不是启动时就加载所有资源
-</code></pre><h3 id="2-简要概括一下-MVC-和-MVVM，MVP三种模式。"><a href="#2-简要概括一下-MVC-和-MVVM，MVP三种模式。" class="headerlink" title="2.简要概括一下 MVC 和 MVVM，MVP三种模式。"></a>2.简要概括一下 <strong>MVC</strong> 和 <strong>MVVM</strong>，<strong>MVP</strong>三种模式。</h3><h5 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h5><p><img src="http://image.beekka.com/blog/2015/bg2015020105.png" alt=""></p>
-<p><strong><code>MVC</code>模式所有的模块通信都是单向的</strong>（这一点个人持怀疑态度，希望大家提出意见）</p>
-<ol>
-<li><code>View</code>传递指令给<code>Controller</code></li>
-<li><code>Controller</code> 完成业务逻辑后，要求 <code>Model</code> 改变状态</li>
-<li><code>Model</code> 将新的数据发送到 <code>View</code>，用户得到反馈</li>
-</ol>
-<p><strong>还有一种是<code>Controller</code>直接接受指令</strong></p>
-<p><img src="http://image.beekka.com/blog/2015/bg2015020107.png" alt=""></p>
-<h5 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h5><p><strong><code>MVP</code> 模式将 <code>Controller</code> 改名为 <code>Presenter</code>，同时改变了通信方向。</strong></p>
-<p><img src="http://image.beekka.com/blog/2015/bg2015020109.png" alt=""></p>
-<ol>
-<li>各部分之间的通信，都是双向的。</li>
-<li><code>View</code> 与 <code>Model</code> 不发生联系，都通过 <code>Presenter</code> 传递。</li>
-<li><code>View</code> 非常薄，不部署任何业务逻辑，称为”被动视图”（Passive View），即没有任何主动性，而 <code>Presenter</code>非常厚，所有逻辑都部署在那里。</li>
-</ol>
-<h5 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h5><p><code>MVVM</code> 模式将 <code>Presenter</code> 改名为 <code>ViewModel</code>，基本上与 <code>MVP</code> 模式完全一致。<br><img src="http://image.beekka.com/blog/2015/bg2015020110.png" alt=""></p>
-<p>唯一的区别是，它采用<code>双向绑定（data-binding）</code>：<code>View</code>的变动，自动反映在 <code>ViewModel</code>，反之亦然。<code>Angular</code> 和 <code>Ember</code> 都采用这种模式。</p>
-<h3 id="3-为什么代理要用weak？代理的delegate和dataSource有什么区别？block和代理的区别"><a href="#3-为什么代理要用weak？代理的delegate和dataSource有什么区别？block和代理的区别" class="headerlink" title="3.为什么代理要用weak？代理的delegate和dataSource有什么区别？block和代理的区别?"></a>3.为什么代理要用weak？代理的delegate和dataSource有什么区别？block和代理的区别?</h3><h5 id="1-首先，为什么代理要用weak？"><a href="#1-首先，为什么代理要用weak？" class="headerlink" title="1.首先，为什么代理要用weak？"></a>1.首先，为什么代理要用weak？</h5><p><strong>其实就是循环引用！！！</strong><br>我们一般在声明一个协议的时候，会定义一个代理属性，如果代理用的比较溜就会知道，一般都是别的类成为当前协议的代理，也就是说，代理实际是外部的一个类。代理属性的销毁不由当前协议类控制，而是由外部代理者自己控制。<br>如果在定义代理属性时，使用<code>Strong</code>，外界就无法销毁代理属性，造成循环引用，无法释放。</p>
-<h5 id="2-代理的delegate和dataSource有什么区别。"><a href="#2-代理的delegate和dataSource有什么区别。" class="headerlink" title="2.代理的delegate和dataSource有什么区别。"></a>2.代理的delegate和dataSource有什么区别。</h5><p><code>delegate</code> 和 <code>dataSource</code> 常见于<code>UITableView</code>和<code>UICollectionView</code>。<br><code>dataSource</code>是数据源，决定了显示多少个<code>区域</code>，每个区域显示多少<code>行</code>，每行现实的<code>具体内容</code>,<code>头部,尾部</code>视图等。<br><code>delegate</code>是交互行为的代理,比如<code>点击</code>，<code>取消选中</code>，<code>是否高亮</code>等等。</p>
-<p>关于这个问题我有一些疑惑，比如<code>delegate</code>里面也有决定头部视图显示什么，尾部视图显示什么的方法，按我的理解应该在<code>DataSource</code>才对，请大家指教。</p>
-<h5 id="3-block和代理的区别"><a href="#3-block和代理的区别" class="headerlink" title="3.block和代理的区别?"></a>3.block和代理的区别?</h5><p><code>Block</code>是带有局部变量的匿名函数，是一个代码段，<code>Block</code>更面向结果，他适合与状态无关的操作，例如直接返回某些值得时候，就比较适合用<code>Block</code>。</p>
-<p><code>delegate</code>回调则更加面向过程，例如执行的回调需要几个不同的步骤，这个时候使用<code>delegate</code>则更为合适</p>
-<h3 id="4-属性的实质是什么？包括哪几个部分？属性默认的关键字都有哪些？-dynamic关键字和-synthesize关键字是用来做什么的？"><a href="#4-属性的实质是什么？包括哪几个部分？属性默认的关键字都有哪些？-dynamic关键字和-synthesize关键字是用来做什么的？" class="headerlink" title="4.属性的实质是什么？包括哪几个部分？属性默认的关键字都有哪些？@dynamic关键字和@synthesize关键字是用来做什么的？"></a>4.属性的实质是什么？包括哪几个部分？属性默认的关键字都有哪些？@dynamic关键字和@synthesize关键字是用来做什么的？</h3><p>想深入了解，可以看一下详细的总结 : <a href="https://github.com/liberalisman/2018-Interview-Preparation#04-property" target="_blank" rel="external">https://github.com/liberalisman/2018-Interview-Preparation#04-property</a></p>
-<h5 id="1-实质就是-ivar（实例变量）、存取方法（access-method-＝-getter-setter）。"><a href="#1-实质就是-ivar（实例变量）、存取方法（access-method-＝-getter-setter）。" class="headerlink" title="1.实质就是 ivar（实例变量）、存取方法（access method ＝ getter + setter）。"></a>1.实质就是 ivar（实例变量）、存取方法（access method ＝ getter + setter）。</h5><p>@property 的本质.</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> = ivar + <span class="keyword">getter</span> + <span class="keyword">setter</span>;</div></pre></td></tr></table></figure>
-<h5 id="2-属性可以拥有的特质分为四类"><a href="#2-属性可以拥有的特质分为四类" class="headerlink" title="2.属性可以拥有的特质分为四类:"></a>2.属性可以拥有的特质分为四类:</h5><ul>
-<li><p><strong>原子性— nonatomic</strong> 特质,在默认情况下，由编译器合成的方法会通过锁定机制确保其原子性<code>(atomicity)</code>。如果属性具备 <code>nonatomic</code> 特质，则不使用<code>自旋锁</code>。请注意，尽管没有名为<code>atomic</code>的特质(如果某属性不具备 <code>nonatomic</code> 特质，那它就是“原子的” ( <code>atomic</code>) )，但是仍然可以在属性特质中写明这一点，编译器不会报错。若是自己定义存取方法，那么就应该遵从与属性特质相符的原子性。</p>
-</li>
-<li><p><strong>读/写权限</strong>—readwrite(读写)、readonly (只读)</p>
-</li>
-<li><p><strong>内存管理语义</strong>—assign、strong、 weak、unsafe_unretained、copy</p>
-</li>
-<li><strong>方法名</strong> - getter=<name> 、setter=<name></name></name></li>
-</ul>
-<h5 id="3-属性的默认关键字"><a href="#3-属性的默认关键字" class="headerlink" title="3.属性的默认关键字:"></a>3.属性的默认关键字:</h5><p>在 ARC 下，如果如果修饰的是 <strong>Objective-C</strong> 对象。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> (atomic，<span class="keyword">strong</span>,<span class="keyword">readwrite</span>) <span class="built_in">UIView</span> *view;</div></pre></td></tr></table></figure>
-<p>如果如果修饰的是基本数据类型。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> (atomic，<span class="keyword">assign</span>,<span class="keyword">readwrite</span>) <span class="keyword">int</span> num;</div></pre></td></tr></table></figure>
-<h5 id="4-“自动合成”-autosynthesis"><a href="#4-“自动合成”-autosynthesis" class="headerlink" title="4.“自动合成”( autosynthesis)"></a>4.“自动合成”( autosynthesis)</h5><blockquote>
-<p>完成属性定义后，编译器会自动编写访问这些属性所需的方法，此过程叫做<strong>“自动合成”(autosynthesis)</strong>。需要强调的是，这个过程由编译 器在编译期执行，所以编辑器里看不到这些“合成方法”(synthesized method)的源代码。除了生成方法代码<strong> getter、setter</strong> 之外，编译器还要自动向类中添加适当类型的实例变量，并且在属性名前面加下划线，以此作为实例变量的名字。<br>也可以在类的实现代码里通过<strong>@synthesize</strong> 语法来指定实例变量的名字.</p>
-</blockquote>
-<h5 id="5-dynamic"><a href="#5-dynamic" class="headerlink" title="5.@dynamic"></a>5.@dynamic</h5><blockquote>
-<p>告诉编译器,属性的setter与getter方法由用户自己实现，不自动生成。</p>
-</blockquote>
-<p>如果<code>@synthesize</code>和<code>@dynamic</code>都没写，那么默认的就是</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@syntheszie var = _var;</div><div class="line"></div><div class="line"><span class="comment">// @synthesize的语义是如果你没有手动实现setter方法和getter方法，那么编译器会自动为你加上这两个方法。</span></div><div class="line"><span class="comment">// @dynamic告诉编译器,属性的setter与getter方法由用户自己实现，不自动生成。</span></div></pre></td></tr></table></figure>
-<h5 id="6-为了搞清属性是怎么实现的-反编译相关的代码-大致生成了五个东西"><a href="#6-为了搞清属性是怎么实现的-反编译相关的代码-大致生成了五个东西" class="headerlink" title="6.为了搞清属性是怎么实现的,反编译相关的代码,大致生成了五个东西"></a>6.为了搞清属性是怎么实现的,反编译相关的代码,大致生成了五个东西</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> OBJC_IVAR_$类名$属性名称 ：该属性的“偏移量” (offset)，这个偏移量是“硬编码” (hardcode)，表示该变量距离存放对象的内存区域的起始地址有多远。</div><div class="line"><span class="number">2.</span> <span class="keyword">setter</span> 与 <span class="keyword">getter</span> 方法对应的实现函数</div><div class="line"><span class="number">3.</span> ivar_list ：成员变量列表</div><div class="line"><span class="number">4.</span> method_list ：方法列表</div><div class="line"><span class="number">5.</span> prop_list ：属性列表</div><div class="line">也就是说我们每次在增加一个属性,系统都会在 ivar_list 中添加一个成员变量的描述,</div><div class="line">在 method_list 中增加 <span class="keyword">setter</span> 与 <span class="keyword">getter</span> 方法的描述,</div><div class="line">在属性列表中增加一个属性的描述,</div><div class="line">然后计算该属性在对象中的偏移量,</div><div class="line">然后给出 <span class="keyword">setter</span> 与 <span class="keyword">getter</span> 方法对应的实现,</div><div class="line">在 <span class="keyword">setter</span> 方法中从偏移量的位置开始赋值,</div><div class="line">在 <span class="keyword">getter</span> 方法中从偏移量开始取值,</div><div class="line">为了能够读取正确字节数,</div><div class="line">系统对象偏移量的指针类型进行了类型强转.</div></pre></td></tr></table></figure>
-<h3 id="5-NSString为什么要用copy关键字，如果用strong会有什么问题？"><a href="#5-NSString为什么要用copy关键字，如果用strong会有什么问题？" class="headerlink" title="5.NSString为什么要用copy关键字，如果用strong会有什么问题？"></a>5.NSString为什么要用copy关键字，如果用strong会有什么问题？</h3><p><code>NSString</code>有可变的子类<code>NSMutableString</code>。因为父类指针可以指向子类，避免<code>NSMutableString</code>给<code>NSString</code>赋值，造成原有的值被无形修改，所以用<code>Copy</code>修饰。</p>
-<p>我们修饰 <code>NSString</code> 使用 <code>Copy</code> 关键字。</p>
-<ul>
-<li><p>如果传进来的也是 <code>NSString</code>类型，这时候<code>Copy</code>作为指针拷贝，是浅拷贝，内容不会发生变化。</p>
-</li>
-<li><p>如果传进来的是 <code>NSMutableString</code>类型，这时候<code>Copy</code>作为内容拷贝，是深拷贝，在内存中新开辟出一块儿新的地址，防止原有的值被改变。</p>
-</li>
-</ul>
-<hr>
-<p>以上是我之前的回答，热心网友对此问题作了完善的补充</p>
-<blockquote>
-<p>NSString 使用 copy 和它的子类并没有关系，而且凡是 NSObject 都有 copy 方法，并不是 NSString 独有。</p>
-</blockquote>
-<p>如下代码：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *string = <span class="string">@"测试数据"</span>;</div><div class="line"><span class="built_in">NSString</span> *copyString = [string <span class="keyword">copy</span>]；</div><div class="line"><span class="built_in">NSMutableString</span> *mutableCopyString = [string mutableCopy];</div><div class="line"><span class="built_in">NSMutableString</span> *copyMutableString = [string <span class="keyword">copy</span>];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%p,%p,%p,%p"</span>, string, copyString, mutableCopyString, copyMutableString);</div></pre></td></tr></table></figure>
-<p>输出它们的地址，<code>string</code> 和 <code>copyString</code> 的地址是相同的，说明它们的指针指向同一个地址，也就是说 <code>copy</code> 是浅拷贝，即<code>指针拷贝</code>；<code>mutableCopyString</code> 和其他的地址都不一样，说明新开辟了一块内存空间，也就是和前两个没有任何关系，也就是说 <code>mutableCopy</code> 发生了<code>深拷贝</code>；</p>
-<p><code>copyMutableString</code> 和其他的地址也不一样，同 <code>mutableCopyString</code> ，也是发生了<code>深拷贝</code>。</p>
-<p>对于 <code>copyString</code> 和 <code>copyMutableString</code> 同是使用的 <code>copy</code>，但是地址却不一样，是因为苹果对于不可变的对象执行的引用操作，而对于可变对象，相对于之前的不可变对象，那么地址肯定会不一样，所以这个时候就要拷贝一份，和之前的就没有任何关系了。</p>
-<p>还有就是属性中的 copy 关键字，如下代码：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *copyString;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSString</span> *strongString;</div></pre></td></tr></table></figure>
-<p>对于上面的代码，<code>copyString</code> 和 <code>strongString</code> 的 <code>set</code> 方法中，</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)setCopyString:(<span class="built_in">NSString</span> *)copyString &#123;</div><div class="line">    _copyString = [copyString <span class="keyword">copy</span>];  <span class="comment">// 调用 copy 方法，所以并不是直接赋值</span></div><div class="line">&#125;</div><div class="line">-(<span class="keyword">void</span>)setStrongString:(<span class="built_in">NSString</span> *)strongString &#123;</div><div class="line">    _strongString = strongString;  <span class="comment">// 直接引用</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果想要外界赋值的值对 <code>string</code> 有影响，那么就用 <code>strong</code>，这样两者相当于还是一个对象，如果在赋值以后不想要外界再对 <code>string</code> 有影响，那么就用 <code>copy</code>。也就是说用 <code>strong</code> 还是 <code>copy</code> 可以根据情况而定。</p>
-<h3 id="6-如何令自己所写的对象具有拷贝功能"><a href="#6-如何令自己所写的对象具有拷贝功能" class="headerlink" title="6.如何令自己所写的对象具有拷贝功能?"></a>6.如何令自己所写的对象具有拷贝功能?</h3><p>简单说就是遵守<code>NSCopying</code>,<code>NSMutableCopying</code>协议</p>
-<p>并且实现<code>(id)copyWithZone:(NSZone *)zone</code>和<code>(id)mutableCopyWithZone:(NSZone *)zone</code>两个方法即可。</p>
-<p>深入了解可看我的<a href="https://github.com/liberalisman/2018-Interview-Preparation#02-shallowcopy-deepcopy" target="_blank" rel="external">其他文章</a>。</p>
-<h3 id="7-可变集合类-和-不可变集合类的-copy-和-mutablecopy-有什么区别？如果是集合是内容复制的话，集合里面的元素也是内容复制么？"><a href="#7-可变集合类-和-不可变集合类的-copy-和-mutablecopy-有什么区别？如果是集合是内容复制的话，集合里面的元素也是内容复制么？" class="headerlink" title="7.可变集合类 和 不可变集合类的 copy 和 mutablecopy 有什么区别？如果是集合是内容复制的话，集合里面的元素也是内容复制么？"></a>7.<code>可变集合类</code> 和 <code>不可变集合类</code>的 <code>copy</code> 和 <code>mutablecopy</code> 有什么区别？如果是集合是内容复制的话，集合里面的元素也是内容复制么？</h3><table>
-<thead>
-<tr>
-<th>源对象类型</th>
-<th>拷贝方式</th>
-<th>副本对象类型</th>
-<th>是否有新的对象</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>NSArray</td>
-<td>Copy</td>
-<td>NSArray</td>
-<td>NO</td>
-</tr>
-<tr>
-<td>NSMutableArray</td>
-<td>Copy</td>
-<td>NSArray</td>
-<td>YES</td>
-</tr>
-<tr>
-<td>NSMutableArray</td>
-<td>MutableCopy</td>
-<td>NSMutableArray</td>
-<td>YES</td>
-</tr>
-<tr>
-<td>NSArray</td>
-<td>MutableCopy</td>
-<td>NSMutableArray</td>
-<td>YES</td>
-</tr>
-</tbody>
-</table>
-<p>如果是集合内容复制，它的内容复制也分两种，一种是<code>单层复制</code>，一种是<code>完全复制</code>。上表的后三种全都是<code>单层内容复制</code>，只有最外面的容器被复制了，里面存储对象的指针地址不变。</p>
-<h3 id="8-为什么IBOutlet修饰的UIView使用weak关键字？"><a href="#8-为什么IBOutlet修饰的UIView使用weak关键字？" class="headerlink" title="8.为什么IBOutlet修饰的UIView使用weak关键字？"></a>8.为什么IBOutlet修饰的UIView使用weak关键字？</h3><p>关于<code>IBOutlet</code>修饰的属性究竟是使用<code>strong</code>还是<code>weak</code>,网上的不同意见还是挺多的。</p>
-<p>但我认为这可以分为两种情况：</p>
-<p>1.如果从<code>storyBoard</code>或者<code>nib</code>拖出来的<code>插座属性</code>是<code>storyBoard</code>或者<code>nib</code>所直接拥有的，这个时候应该使用<code>Strong</code>修饰</p>
-<p>2.如果是一个<code>storyBoard</code>或者<code>nib</code>的<code>子控件</code>再添加<code>子控件</code>,这个时候就应该用<code>weak</code>。</p>
-<p>这么说可能比较不好理解。<br><img src="http://okhqmtd8q.bkt.clouddn.com/Interview-QA/1.png" alt=""></p>
-<p>此图控制器的View拖出来的线就是<code>strong</code>。<br>而如果往<code>View</code>上再次添加子控件的话，拖出来的线就是<code>weak</code>。</p>
-<h3 id="9-nonatomic和atomic的区别？atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？"><a href="#9-nonatomic和atomic的区别？atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？" class="headerlink" title="9.nonatomic和atomic的区别？atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？"></a>9.nonatomic和atomic的区别？atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？</h3><h5 id="1-nonatomic和atomic的区别？"><a href="#1-nonatomic和atomic的区别？" class="headerlink" title="1.nonatomic和atomic的区别？"></a>1.nonatomic和atomic的区别？</h5><p><code>atomic-原子性</code></p>
-<ul>
-<li>默认的属性</li>
-<li>保证CPU在别的线程来访问这个属性之前，先执行完当前线程</li>
-<li>速度较慢，因为要保证整体完成。</li>
-</ul>
-<p><code>nonatomic-非原子性</code></p>
-<ul>
-<li>非默认的属性</li>
-<li>线程不安全，如果两个线程同时访问，会出问题</li>
-<li>速度快</li>
-</ul>
-<h5 id="2-atomic是绝对的线程安全么？如果不是，那应该如何实现？"><a href="#2-atomic是绝对的线程安全么？如果不是，那应该如何实现？" class="headerlink" title="2.atomic是绝对的线程安全么？如果不是，那应该如何实现？"></a>2.atomic是绝对的线程安全么？如果不是，那应该如何实现？</h5><p>很遗憾，并不是。。虽然<code>atomic-原子性</code>能保证不同的线程同时访问一个属性的时候，它的<code>Setter</code>和<code>getter</code>方法会有序执行，但如果此时有另一个线程调用该属性的<code>Release</code>方法，还是会出问题的，因为<code>atomic-原子性</code>只能管好它的<code>Setter</code>和<code>getter</code>方法。</p>
-<p>再者开锁是很耗性能的，所以在移动端，一般使用<code>nonatomic</code>,而<code>Mac OS</code>不涉及到性能瓶颈，所在在<code>Mac OS</code>上使用<code>atomic</code>。</p>
-<p>至于在<code>iOS</code>上保证属性在不同线程间访问的绝对安全，这块儿我暂时没有研究过，希望知道的朋友指教。</p>
-<h3 id="10-UICollectionView自定义layout如何实现？"><a href="#10-UICollectionView自定义layout如何实现？" class="headerlink" title="10.UICollectionView自定义layout如何实现？"></a>10.UICollectionView自定义layout如何实现？</h3><p>自定义<code>Layout</code>需要实现以下几个步骤。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1.collectionView每次需要重新布局(初始, layout 被设置为invalidated ...)的时候会首先调用这个方法prepareLayout()</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">prepareLayout</span><span class="params">()</span></span></div><div class="line"></div><div class="line"><span class="comment">// 2.然后会调用layoutAttributesForElementsInRect(rect: CGRect)方法获取到rect范围内的cell的所有布局, 这个rect大家可以打印出来看下, 和collectionView的bounds不一样, size可能比collectionView大一些, 这样设计也许是为了缓冲</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">layoutAttributesForElementsInRect</span><span class="params">(rect: CGRect)</span></span> -&gt; [<span class="type">UICollectionViewLayoutAttributes</span>]?</div><div class="line"></div><div class="line"><span class="comment">// 3.当collectionView的bounds变化的时候会调用shouldInvalidateLayoutForBoundsChange(newBounds: CGRect)这个方法</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">shouldInvalidateLayoutForBoundsChange</span><span class="params">(newBounds: CGRect)</span></span> -&gt; <span class="type">Bool</span></div><div class="line"></div><div class="line"><span class="comment">// 4.需要设置collectionView 的滚动范围 collectionViewContentSize()</span></div><div class="line"><span class="comment">// 自定义的时候, 必须重写这个方法, 并且返回正确的滚动范围, collectionView才能正常的滚动</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">collectionViewContentSize</span><span class="params">()</span></span> -&gt; <span class="type">CGSize</span></div><div class="line"></div><div class="line"><span class="comment">//  5.以下方法, Apple建议我们也重写, 返回正确的自定义对象的布局,因为有时候当collectionView执行一些操作(delete insert reload)等系统会调用这些方法获取布局, 如果没有重写, 可能发生意想不到的效果    </span></div><div class="line"><span class="comment">// 自定义cell布局的时候重写</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">layoutAttributesForItemAtIndexPath</span><span class="params">(indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UICollectionViewLayoutAttributes</span>?</div><div class="line"><span class="comment">// 自定义SupplementaryView的时候重写</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">layoutAttributesForSupplementaryViewOfKind</span><span class="params">(elementKind: String, atIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UICollectionViewLayoutAttributes</span>?</div><div class="line"><span class="comment">// 自定义DecorationView的时候重写</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">layoutAttributesForDecorationViewOfKind</span><span class="params">(elementKind: String, atIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UICollectionViewLayoutAttributes</span>?</div><div class="line"></div><div class="line"><span class="comment">// 6.这个方法是当collectionView将停止滚动的时候调用,得到最终偏移量。我们可以重写它来实现, collectionView停在指定的位置(比如照片浏览的时候, 你可以通过这个实现居中显示照片...)</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">targetContentOffsetForProposedContentOffset</span><span class="params">(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint)</span></span> -&gt; <span class="type">CGPoint</span></div></pre></td></tr></table></figure>
-<h3 id="11-用StoryBoard开发界面有什么弊端？如何避免？"><a href="#11-用StoryBoard开发界面有什么弊端？如何避免？" class="headerlink" title="11.用StoryBoard开发界面有什么弊端？如何避免？"></a>11.用StoryBoard开发界面有什么弊端？如何避免？</h3><p>其实关于用<code>StoryBoard</code>还是纯代码的开发方式，争吵声一直都存在，其实我个人并不反感<code>StoryBoard</code>,反而还挺喜欢。开发速度快，如果协调好，可以减轻很多工作量。不过关于<code>StoryBoard</code>这个话题如果展开的话还是比较大，建议大家读一下。喵神最近写的一篇文章，附上<a href="https://onevcat.com/2017/04/storyboard-argue/" target="_blank" rel="external">原文链接</a>，有异议的话也欢迎大家积极讨论。</p>
-<h3 id="12-进程和线程的区别？同步异步的区别？并行和并发的区别？"><a href="#12-进程和线程的区别？同步异步的区别？并行和并发的区别？" class="headerlink" title="12.进程和线程的区别？同步异步的区别？并行和并发的区别？"></a>12.进程和线程的区别？同步异步的区别？并行和并发的区别？</h3><h5 id="1-进程和线程的区别？"><a href="#1-进程和线程的区别？" class="headerlink" title="1.进程和线程的区别？"></a>1.进程和线程的区别？</h5><blockquote>
-<p>进程:进程是指在系统中正在运行的一个应用程序。每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内。</p>
-<p>线程：线程是进程的基本执行单元，一个进程的所有任务都在线程中执行。1个进程要想执行任务，必须得有线程，例如默认就是主线程。</p>
-</blockquote>
-<h5 id="2-同步异步的区别？"><a href="#2-同步异步的区别？" class="headerlink" title="2.同步异步的区别？"></a>2.同步异步的区别？</h5><blockquote>
-<p>同步函数：不具备开线程的能力，只能串行按顺序执行任务</p>
-<p>异步函数：具备开线程的能力，但并不是只要是异步函数就会开线程。</p>
-</blockquote>
-<h5 id="3-并行和并发的区别？"><a href="#3-并行和并发的区别？" class="headerlink" title="3.并行和并发的区别？"></a>3.并行和并发的区别？</h5><blockquote>
-<p>并行：并行即同时执行。比如同时开启3条线程分别执行三个不同人物，这些任务执行时同时进行的。</p>
-<p>并发：并发指在同一时间里，CPU只能处理1条线程，只有1条线程在工作（执行）。多线程并发（同时）执行，其实是CPU快速地在多条线程之间调度（切换），如果CPU调度线程的时间足够快，就造成了多线程并发执行的假象。</p>
-</blockquote>
-<h3 id="13-线程间通信？"><a href="#13-线程间通信？" class="headerlink" title="13.线程间通信？"></a>13.线程间通信？</h3><h5 id="1-NSThread"><a href="#1-NSThread" class="headerlink" title="1.NSThread"></a>1.NSThread</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第一种方式。</span></div><div class="line">[<span class="keyword">self</span> performSelectorOnMainThread:<span class="keyword">@selector</span>(showImage:) withObject:image waitUntilDone:<span class="literal">YES</span>];</div><div class="line"></div><div class="line"><span class="comment">// 第二种方式</span></div><div class="line">[<span class="keyword">self</span>.imageView performSelectorOnMainThread:<span class="keyword">@selector</span>(setImage:) withObject:image waitUntilDone:<span class="literal">YES</span>];</div></pre></td></tr></table></figure>
-<h5 id="2-GCD"><a href="#2-GCD" class="headerlink" title="2.GCD"></a>2.GCD</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//0.获取一个全局的队列</span></div><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="comment">//1.先开启一个线程，把下载图片的操作放在子线程中处理</span></div><div class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line">   <span class="comment">//2.下载图片</span></div><div class="line">    <span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://h.hiphotos.baidu.com/zhidao/pic/item/6a63f6246b600c3320b14bb3184c510fd8f9a185.jpg"</span>];</div><div class="line">    <span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfURL:url];</div><div class="line">    <span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageWithData:data];</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"下载操作所在的线程--%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    <span class="comment">//3.回到主线程刷新UI</span></div><div class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</div><div class="line">       <span class="keyword">self</span>.imageView.image = image;</div><div class="line">       <span class="comment">//打印查看当前线程</span></div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"刷新UI---%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// GCD通过嵌套就可以实现线程间的通信。</span></div></pre></td></tr></table></figure>
-<h5 id="3-NSOperationQueue"><a href="#3-NSOperationQueue" class="headerlink" title="3.NSOperationQueue"></a>3.NSOperationQueue</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.创建队列</span></div><div class="line"><span class="built_in">NSOperationQueue</span> *queue = [[<span class="built_in">NSOperationQueue</span> alloc]init];</div><div class="line"></div><div class="line"><span class="comment">//2.使用简便方法封装操作并添加到队列中</span></div><div class="line">[queue addOperationWithBlock:^&#123;</div><div class="line"></div><div class="line">    <span class="comment">//3.在该block中下载图片</span></div><div class="line">    <span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://news.51sheyuan.com/uploads/allimg/111001/133442IB-2.jpg"</span>];</div><div class="line">    <span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfURL:url];</div><div class="line">    <span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageWithData:data];</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"下载图片操作--%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line"></div><div class="line">    <span class="comment">//4.回到主线程刷新UI</span></div><div class="line">    [[<span class="built_in">NSOperationQueue</span> mainQueue] addOperationWithBlock:^&#123;</div><div class="line">        <span class="keyword">self</span>.imageView.image = image;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"刷新UI操作---%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    &#125;];</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
-<h3 id="14-GCD的一些常用的函数？"><a href="#14-GCD的一些常用的函数？" class="headerlink" title="14.GCD的一些常用的函数？"></a>14.GCD的一些常用的函数？</h3><h5 id="1-栅栏函数（控制任务的执行顺序）"><a href="#1-栅栏函数（控制任务的执行顺序）" class="headerlink" title="1.栅栏函数（控制任务的执行顺序）"></a>1.栅栏函数（控制任务的执行顺序）</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dispatch_barrier_async(queue, ^&#123;</div><div class="line"></div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"barrier"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h5 id="2-延迟执行（延迟·控制在哪个线程执行）"><a href="#2-延迟执行（延迟·控制在哪个线程执行）" class="headerlink" title="2.延迟执行（延迟·控制在哪个线程执行）"></a>2.延迟执行（延迟·控制在哪个线程执行）</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">2.0</span> * <span class="built_in">NSEC_PER_SEC</span>)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"---%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h5 id="3-一次性代码"><a href="#3-一次性代码" class="headerlink" title="3.一次性代码"></a>3.一次性代码</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</div><div class="line"><span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</div><div class="line"></div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"-----"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h5 id="4-快速迭代（开多个线程并发完成迭代操作）"><a href="#4-快速迭代（开多个线程并发完成迭代操作）" class="headerlink" title="4.快速迭代（开多个线程并发完成迭代操作）"></a>4.快速迭代（开多个线程并发完成迭代操作）</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dispatch_apply(subpaths.count, queue, ^(size_t index) &#123;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h5 id="5-队列组（同栅栏函数）"><a href="#5-队列组（同栅栏函数）" class="headerlink" title="5.队列组（同栅栏函数）"></a>5.队列组（同栅栏函数）</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">dispatch_group_t group = dispatch_group_create();</div><div class="line"><span class="comment">// 队列组中的任务执行完毕之后，执行该函数</span></div><div class="line">dispatch_group_notify(dispatch_group_t group,<span class="built_in">dispatch_queue_t</span> queue,dispatch_block_t block);</div><div class="line"></div><div class="line"><span class="comment">// 进入群组和离开群组</span></div><div class="line">dispatch_group_enter(group);<span class="comment">//执行该函数后，后面异步执行的block会被gruop监听</span></div><div class="line">dispatch_group_leave(group);<span class="comment">//异步block中，所有的任务都执行完毕，最后离开群组</span></div><div class="line"><span class="comment">//注意：dispatch_group_enter|dispatch_group_leave必须成对使用</span></div></pre></td></tr></table></figure>
-<h5 id="6-信号量（并发编程中很有用）"><a href="#6-信号量（并发编程中很有用）" class="headerlink" title="6.信号量（并发编程中很有用）"></a>6.信号量（并发编程中很有用）</h5><h3 id="15-如何使用队列来避免资源抢夺？"><a href="#15-如何使用队列来避免资源抢夺？" class="headerlink" title="15.如何使用队列来避免资源抢夺？"></a>15.如何使用队列来避免资源抢夺？</h3><p>可以用<strong>串行队列</strong>或者是<strong>同步锁</strong>。保证在同一时间内，只有一条线程在访问资源。</p>
-<h3 id="16-数据持久化的几个方案"><a href="#16-数据持久化的几个方案" class="headerlink" title="16.数据持久化的几个方案"></a>16.数据持久化的几个方案</h3><ul>
-<li>plist文件（属性列表）</li>
-<li>preference（偏好设置）</li>
-<li>NSKeyedArchiver（归档）</li>
-<li>SQLite 3 （FMDB）</li>
-<li>CoreData</li>
-</ul>
-<p>在此不展开了，篇幅比较大，详情见我<a href="https://github.com/liberalisman/iOS-Summary-Part1#08-ios数据持久化方案" target="_blank" rel="external">另一篇文章</a></p>
-<h3 id="17-说一下AppDelegate的几个方法？从后台到前台调用了哪些方法？第一次启动调用了哪些方法？从前台到后台调用了哪些方法？"><a href="#17-说一下AppDelegate的几个方法？从后台到前台调用了哪些方法？第一次启动调用了哪些方法？从前台到后台调用了哪些方法？" class="headerlink" title="17.说一下AppDelegate的几个方法？从后台到前台调用了哪些方法？第一次启动调用了哪些方法？从前台到后台调用了哪些方法？"></a>17.说一下AppDelegate的几个方法？从后台到前台调用了哪些方法？第一次启动调用了哪些方法？从前台到后台调用了哪些方法？</h3><p>1.应用程序启动，并进行初始化时候调用该方法：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>2、应用进入前台并处于活动状态时候调用：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)applicationDidBecomeActive:(<span class="built_in">UIApplication</span> *)application &#123;&#125;</div></pre></td></tr></table></figure>
-<p>3、应用从活动状态进入到非活动状态：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)applicationWillResignActive:(<span class="built_in">UIApplication</span> *)application &#123;&#125;</div></pre></td></tr></table></figure>
-<p>4、应用进入到后台时候调用的方法:applicationDidEnterBackground：</p>
- <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)applicationDidEnterBackground:(<span class="built_in">UIApplication</span> *)application &#123;&#125;</div></pre></td></tr></table></figure>
-<p>5、应用进入到前台时候调用的方法:</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)applicationWillEnterForeground:(<span class="built_in">UIApplication</span> *)application &#123;&#125;</div></pre></td></tr></table></figure>
-<p>6、应用被终止的状态:</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)applicationWillTerminate:(<span class="built_in">UIApplication</span> *)application &#123;&#125;</div></pre></td></tr></table></figure>
-<h3 id="18-NSCache优于NSDictionary的几点？"><a href="#18-NSCache优于NSDictionary的几点？" class="headerlink" title="18.NSCache优于NSDictionary的几点？"></a>18.NSCache优于NSDictionary的几点？</h3><p>在做缓存时，优先使用<code>NSCache</code>而不是<code>NSDictionary</code>,我们熟悉的框架<code>SDWebimage</code>就是采用的<code>NSCache</code>。</p>
-<p><code>NSCache</code>优点如下：</p>
-<ol>
-<li>系统资源将要耗尽时，它可以自动删减缓存。</li>
-<li>可以设置最大缓存数量。</li>
-<li>可以设置最大占用内存值。</li>
-<li><code>NSCache</code>线程是安全的。</li>
-</ol>
-<h3 id="19-知不知道Designated-Initializer？使用它的时候有什么需要注意的问题？"><a href="#19-知不知道Designated-Initializer？使用它的时候有什么需要注意的问题？" class="headerlink" title="19.知不知道Designated Initializer？使用它的时候有什么需要注意的问题？"></a>19.知不知道Designated Initializer？使用它的时候有什么需要注意的问题？</h3><p>基本遵循以下三个规则(约束条件)</p>
-<pre><code>1. 子类如果有指定初始化函数，那么指定初始化函数实现时必须调用它的直接父类的指定初始化函数。
-2. 如果子类有指定初始化函数，那么便利初始化函数必须调用自己的其它初始化函数(包括指定初始化函数以及其他的便利初始化函数)，不能调用super的初始化
-函数。
-3. 如果子类提供了指定初始化函数，那么一定要实现所有父类的指定初始化函数。
-</code></pre><p>这个问题没有想好该如何回答，希望大家指教。</p>
-<h3 id="20-实现description方法能取到什么效果？"><a href="#20-实现description方法能取到什么效果？" class="headerlink" title="20.实现description方法能取到什么效果？"></a>20.实现description方法能取到什么效果？</h3><p>举例来说明吧</p>
-<h5 id="1-我们创建一个自定义对象"><a href="#1-我们创建一个自定义对象" class="headerlink" title="1.我们创建一个自定义对象"></a>1.我们创建一个自定义对象</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>  ) <span class="built_in">NSString</span> *name;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>  ) <span class="built_in">NSString</span> *hobbies;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-<h5 id="2-在ViewController中，我们引用了Person类"><a href="#2-在ViewController中，我们引用了Person类" class="headerlink" title="2.在ViewController中，我们引用了Person类"></a>2.在<code>ViewController</code>中，我们引用了<code>Person</code>类</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event</div><div class="line">&#123;</div><div class="line">    Person *p = [[Person alloc] init];</div><div class="line">    </div><div class="line">    p.name = <span class="string">@"lili"</span>;</div><div class="line">    </div><div class="line">    p.hobbies = <span class="string">@"paint"</span>;</div><div class="line">    </div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,p);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>此时打印出来的结果如图：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">2017</span><span class="number">-06</span><span class="number">-15</span> <span class="number">13</span>:<span class="number">12</span>:<span class="number">00.471</span> cop[<span class="number">1561</span>:<span class="number">258406</span>] &lt;Person: <span class="number">0x60800003dc80</span>&gt;</div></pre></td></tr></table></figure>
-<p><strong>是不是和你预计的效果还是差了一些？</strong></p>
-<p>此时我们就需要重写对象的<strong><code>description</code></strong>方法</p>
-<h5 id="3-此时在Person的-m文件中，我们进行如下操作："><a href="#3-此时在Person的-m文件中，我们进行如下操作：" class="headerlink" title="3.此时在Person的.m文件中，我们进行如下操作："></a>3.此时在<code>Person</code>的<code>.m</code>文件中，我们进行如下操作：</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"Person.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></div><div class="line"></div><div class="line">- (<span class="built_in">NSString</span> *)description &#123;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"_name = %@,_hobbies = %@"</span>,_name,_hobbies];</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-<p>再次打印</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">2017</span><span class="number">-06</span><span class="number">-15</span> <span class="number">13</span>:<span class="number">21</span>:<span class="number">20.132</span> cop[<span class="number">1593</span>:<span class="number">275015</span>] _name = lili,_hobbies = paint</div></pre></td></tr></table></figure>
-<p> 通过对比之后，大家一定就明白了</p>
-<h3 id="21-objc使用什么机制管理对象内存？"><a href="#21-objc使用什么机制管理对象内存？" class="headerlink" title="21.objc使用什么机制管理对象内存？"></a>21.objc使用什么机制管理对象内存？</h3><p>Objective-C使用<code>AEC自动引用计数</code>来有效的管理内存。</p>
-<p>他遵循的原则是，谁引用，谁销毁。</p>
-<p><code>Retain</code>,<code>Copy</code>,<code>Alloc</code>,<code>New</code>等必然对应<code>Release</code>。</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ios/">ios</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
     <article id="post-常用的linux 命令"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -543,7 +260,7 @@
 
           
             <div class="entry-thumbnail">
-              <a href="/2017/03/08/openCV学习笔记-01cv-Mat/"><img src="http://lorempixel.com/750/450/city/3" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/2017/03/08/openCV学习笔记-01cv-Mat/"><img src="http://lorempixel.com/750/450/city/10" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             cv::Mat 结构cv::Mat 是 openCV 里面图像的结构如果是灰度图， img.at&lt;uchar&gt;(x,y) 就代表一个像素点，反之彩色图像img.at&lt;cv::Vec3b&gt;(i,j)代表一个像素点，每个点由rgb三个颜色来显示。  同时还有Vec2b（二元素向量值）和Vec4b（四元素向量值）
@@ -607,7 +324,7 @@
 
           
             <div class="entry-thumbnail">
-              <a href="/2017/01/29/印像笔记留给你的空间/"><img src="http://lorempixel.com/750/450/city/10" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/2017/01/29/印像笔记留给你的空间/"><img src="http://lorempixel.com/750/450/city/5" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             大脑面临的三重考验杂事各类灵感和想法人类不缺灵感，缺的是将零散的想法组织和整理·
@@ -884,7 +601,7 @@
 
           
             <div class="entry-thumbnail">
-              <a href="/2015/01/17/关于ARC模式下内存的释放问题/"><img src="http://lorempixel.com/750/450/city/9" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/2015/01/17/关于ARC模式下内存的释放问题/"><img src="http://lorempixel.com/750/450/city/3" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             最近上海这边做了一个项目，由于上海的同事几乎没有工作经验，代码写得很乱，没有规范。应用在客户测试时出现各种问题，甚至是一些致命性的闪退问题，同事求助于我对代码做一些检查。发现现在学习IOS开发的人，自从有了ARC之后对内存管理完全没有概念。以为啥都不用管。
@@ -1021,21 +738,6 @@
 
             
               <div class="widget-entry-thumbnail">
-                <a href="/2018/01/01/Interview-Question-Answer/" title=""><img width="50" height="50" src="https://ws4.sinaimg.cn/large/006tNc79ly1g03zwv1bjpj317s0omnpd.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
-              </div>
-              <div class="widget-entry-summary">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/01/01/Interview-Question-Answer/">Interview-Question &amp; Answer</a></h6>
-              <span>一月 1, 2018</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-thumbnail">
                 <a href="/2017/03/23/常用的linux 命令/" title=""><img width="50" height="50" src="https://ww3.sinaimg.cn/large/006tNbRwgy1fdxmm4yv4zj30wi0kcq90.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
               </div>
               <div class="widget-entry-summary">
@@ -1101,6 +803,21 @@
 
           </li>
         
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-thumbnail">
+                <a href="/2016/12/13/XCode-7-到-XCode8-的迁移/" title=""><img width="50" height="50" src="http://ww2.sinaimg.cn/large/006tNbRwgw1faqm8bxu2xj30ku080jry.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
+              </div>
+              <div class="widget-entry-summary">
+            
+
+              <h6 style="margin: 0;"><a href="/2016/12/13/XCode-7-到-XCode8-的迁移/">XCode 7 到 XCode8 的迁移</a></h6>
+              <span>十二月 13, 2016</span>
+            </div>
+
+          </li>
+        
       </ul>
     </div>
   </div>
@@ -1110,7 +827,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其它/">其它</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其它/">其它</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -1120,7 +837,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openCV/">openCV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/印像笔记/">印像笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发/">开发</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openCV/">openCV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/印像笔记/">印像笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发/">开发</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1131,7 +848,7 @@
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
