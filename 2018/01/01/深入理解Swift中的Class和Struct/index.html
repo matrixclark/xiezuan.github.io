@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>深入理解swift中的class和struct | xiezuan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="swift" />
+  
+  
+  
+  
+  <meta name="description" content="# 
+开篇Class和Struct是Swift中很重要的两种数据结构，同时也是Swift面试题必问的一道题。所以对Class和Struct理解透彻对我们学习Swift有很大的帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解Swift中的Class和Struct">
+<meta property="og:url" content="https://xiezuan.github.io/2018/01/01/深入理解Swift中的Class和Struct/index.html">
+<meta property="og:site_name" content="xiezuan's blog">
+<meta property="og:description" content="# 
+开篇Class和Struct是Swift中很重要的两种数据结构，同时也是Swift面试题必问的一道题。所以对Class和Struct理解透彻对我们学习Swift有很大的帮助。">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g03zwv1bjpj317s0omnpd.jpg">
+<meta property="og:updated_time" content="2019-02-13T03:37:43.100Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解Swift中的Class和Struct">
+<meta name="twitter:description" content="# 
+开篇Class和Struct是Swift中很重要的两种数据结构，同时也是Swift面试题必问的一道题。所以对Class和Struct理解透彻对我们学习Swift有很大的帮助。">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g03zwv1bjpj317s0omnpd.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="xiezuan&#39;s blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+<body>
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            <a href="https://xiezuan.github.io/" title="xiezuan" rel="home">
+              xiezuan&#39;s blog</a>
+          </h1>
+          <div class="site-description">学习总结 思考感悟 知识管理</div>
+
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">标签</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-深入理解Swift中的Class和Struct" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="https://ws4.sinaimg.cn/large/006tNc79ly1g03zwv1bjpj317s0omnpd.jpg" rel="gallery_cjs2nacs300009os6mvy1w6dx">
+        <img src="https://ws4.sinaimg.cn/large/006tNc79ly1g03zwv1bjpj317s0omnpd.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      深入理解Swift中的Class和Struct
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/01/01/深入理解Swift中的Class和Struct/" class="article-date">
+	  <time datetime="2018-01-01T13:57:11.000Z" itemprop="datePublished">一月 1, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/swift/">swift</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p># </p>
+<h2 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h2><p>Class和Struct是Swift中很重要的两种数据结构，同时也是Swift面试题必问的一道题。所以对Class和Struct理解透彻对我们学习Swift有很大的帮助。</p>
+<a id="more"></a>
+<h2 id="理解Class"><a href="#理解Class" class="headerlink" title="理解Class"></a>理解Class</h2><h3 id="Class的定义和使用"><a href="#Class的定义和使用" class="headerlink" title="Class的定义和使用"></a>Class的定义和使用</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> weight = <span class="number">0.0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> cat = <span class="type">Animal</span>()</div><div class="line">cat.name = <span class="string">"cat"</span></div><div class="line">cat.weight = <span class="number">10</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(<span class="string">"cat's name: <span class="subst">\(cat.name!)</span>, cat's weight: <span class="subst">\(cat.weight)</span>"</span>) <span class="comment">//cat's name: cat, cat's weight: 10.0</span></div></pre></td></tr></table></figure>
+<h3 id="Class是引用类型"><a href="#Class是引用类型" class="headerlink" title="Class是引用类型"></a>Class是引用类型</h3><p>当值传递的时候，它是传递对已有instance的引用。下面用代码来解释一下这句话：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> cat = <span class="type">Animal</span>()</div><div class="line">cat.name = <span class="string">"cat"</span></div><div class="line">cat.weight = <span class="number">10</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> blackCat = cat</div><div class="line">blackCat.name = <span class="string">"blackCat"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span>(<span class="string">"cat's name: <span class="subst">\(cat.name!)</span>"</span>) <span class="comment">// cat's name: blackCat</span></div></pre></td></tr></table></figure>
+<p>通过上面的代码可以了解到，其实<code>cat</code>和<code>blackCat</code>指向的是同一个Animal的instance。它们只是这个instance的两个不同的名字而已。如下图所示：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1g04mqjfudhj30ek03p0t1.jpg" alt=""></p>
+<h4 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h4><p>我们看到上述代码把<code>cat</code>和<code>blackCat</code>声明为了<code>let</code>，但是我们依然可以修改它的属性，因为<code>cat</code>和<code>blackCat</code>引用的instance并没有改变，它们还是引用之前instance，我们只是修改的instance的属性。但是不能将<code>cat</code>或者<code>blackCat</code>指向另一个实例，如<code>blackCat = Animal()</code>会提示<code>Cannot assign to value: &#39;blackCat&#39; is a &#39;let&#39; constant</code>的错误。</p>
+<h3 id="Identity-Operators"><a href="#Identity-Operators" class="headerlink" title="Identity Operators"></a>Identity Operators</h3><p>Swift 提供<code>===</code>和<code>!==</code>来判断两个变量或者常量是不是引用同一个instance(只用于class，想一想为什么struct不需要).</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> blackCat === cat &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Identical"</span>) <span class="comment">//Identical</span></div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Not identical"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="和-是不一样的。"><a href="#和-是不一样的。" class="headerlink" title="===和==是不一样的。"></a><code>===</code>和<code>==</code>是不一样的。</h4><ul>
+<li><code>===</code>：代表两个变量或者常量引用的同一个instance</li>
+<li><code>==</code>：代表两个变量或者常量的值是否相同，并不一定是引用的同一个instance</li>
+<li>如果想让自定义的class支持<code>==</code>操作符，可以使该类遵守Equatable</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> weight = <span class="number">0.0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Animal</span>: <span class="title">Equatable</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> == <span class="params">(lhs: Animal, rhs: Animal)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        <span class="keyword">return</span> lhs.name == rhs.name &amp;&amp; lhs.weight == rhs.weight</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> cat = <span class="type">Animal</span>()</div><div class="line">cat.name = <span class="string">"cat"</span></div><div class="line">cat.weight = <span class="number">10</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> blackCat = cat</div><div class="line">blackCat.name = <span class="string">"catName"</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> whiteCat = <span class="type">Animal</span>()</div><div class="line">whiteCat.name = <span class="string">"catName"</span></div><div class="line">whiteCat.weight = <span class="number">10.0</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> blackCat === cat &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Identical"</span>) <span class="comment">//Identical</span></div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Not identical"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> whiteCat === blackCat &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Identical"</span>) </div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Not identical"</span>) <span class="comment">//Not identical</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> whiteCat == blackCat &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Equal"</span>)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Not Equal"</span>) <span class="comment">//Equal</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="理解Struct"><a href="#理解Struct" class="headerlink" title="理解Struct"></a>理解Struct</h2><h3 id="Struct的定义和使用"><a href="#Struct的定义和使用" class="headerlink" title="Struct的定义和使用"></a>Struct的定义和使用</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FPoint</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> x = <span class="number">0.0</span></div><div class="line">    <span class="keyword">var</span> y = <span class="number">0.0</span></div><div class="line">    <span class="comment">//当在struct修改属性的时候需要使用mutating</span></div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">addX</span><span class="params">(add: Double)</span></span> &#123;</div><div class="line">        <span class="keyword">self</span>.x = <span class="keyword">self</span>.x + add</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> p1 = <span class="type">FPoint</span>()</div><div class="line"><span class="built_in">print</span>(<span class="string">"p1's x : <span class="subst">\(p1.x)</span>, p1's y: <span class="subst">\(p1.y)</span>"</span>) <span class="comment">// p1's x : 0.0, p1's y: 0.0</span></div></pre></td></tr></table></figure>
+<h3 id="Struct是值类型"><a href="#Struct是值类型" class="headerlink" title="Struct是值类型"></a>Struct是值类型</h3><p>当值进行传递的时候，它会copy传递的值。下面用代码来解释一下这句话:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p2 = p1</div><div class="line">p2.x = <span class="number">3.0</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"p1's x : <span class="subst">\(p1.x)</span>, p1's y: <span class="subst">\(p1.y)</span>; p2's x : <span class="subst">\(p2.x)</span>, p2's y: <span class="subst">\(p2.y)</span>"</span>)</div><div class="line"><span class="comment">//p1's x : 1.0, p1's y: 2.0; p2's x : 3.0, p2's y: 2.0</span></div></pre></td></tr></table></figure>
+<p>通过上述代码我们可以看到，将<code>p1</code>赋值给<code>p2</code>之后改变<code>p2</code>的值并不会影响<code>p1</code>的值，这是因为在将<code>p1</code>赋值给<code>p2</code>的时候是拷贝一个instance<code>值与p1相同</code>，然后将拷贝的instance赋值给<code>p2</code>。如下图所示:</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1g04mqyku1wj30f907odg6.jpg" alt=""></p>
+<h3 id="Note-1"><a href="#Note-1" class="headerlink" title="Note"></a>Note</h3><p>如果struct的instance声明为let，是不能改变instance的值的。如</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> p1 = <span class="type">FPoint</span>(x: <span class="number">1.0</span>, y: <span class="number">2.0</span>)</div><div class="line">p1.x = <span class="number">10.0</span> <span class="comment">//报错:Cannot assign to property: 'p1' is a 'let' constant</span></div></pre></td></tr></table></figure>
+<h2 id="在项目中如何选择Struct和Class"><a href="#在项目中如何选择Struct和Class" class="headerlink" title="在项目中如何选择Struct和Class"></a>在项目中如何选择Struct和Class</h2><ul>
+<li>默认使用struct</li>
+<li>当你需要继承Objective-C某些类的的时候使用class</li>
+<li>当你需要控制唯一性时使用class</li>
+<li>使用struct和protocol来实现model继承和共享行为，如下代码所示:</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">AnimalCommonProtocol</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>? &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">run</span><span class="params">()</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cat</span> : <span class="title">AnimalCommonProtocol</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">run</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"cat run"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span></div><div class="line">    <span class="keyword">var</span> gender: <span class="type">String</span>?</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Dog</span> : <span class="title">AnimalCommonProtocol</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">run</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"dog run"</span>)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span></div><div class="line">    <span class="keyword">var</span> type: <span class="type">String</span>?</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>总结起来就是一句话：能使用struct就不要使用class</p>
+<h3 id="为什么优选struct"><a href="#为什么优选struct" class="headerlink" title="为什么优选struct"></a>为什么优选struct</h3><ul>
+<li>使用struct不需要考虑内存泄漏和多线程读写的问题，因为在传递值的时候它会进行值的copy</li>
+<li>struct存储在stack中，class存储在heap中，struct更快</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><ul>
+<li>都能定义property、method、initializers</li>
+<li>都支持protocol、extension</li>
+</ul>
+<h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><ul>
+<li>class是引用类型；struct是值类型</li>
+<li>class支持继承；struct不支持继承</li>
+<li>class声明的方法修改属性不需要<code>mutating</code>关键字；struct需要</li>
+<li>class没有提供默认的memberwise initializer；struct提供默认的memberwise initializer</li>
+<li>class支持引用计数(Reference counting)；struct不支持</li>
+<li>class支持Type casting；struct不支持</li>
+<li>class支持Deinitializers；struct不支持</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://link.juejin.im?target=https%3A%2F%2Fdocs.swift.org%2Fswift-book%2FLanguageGuide%2FClassesAndStructures.html" target="_blank" rel="external">Structures and Classes</a></li>
+<li><a href="https://link.juejin.im?target=https%3A%2F%2Fdocs.swift.org%2Fswift-book%2FLanguageGuide%2FAdvancedOperators.html%23ID45" target="_blank" rel="external">Equivalence Operators</a></li>
+<li><a href="https://link.juejin.im?target=https%3A%2F%2Fdeveloper.apple.com%2Fdocumentation%2Fswift%2Fchoosing_between_structures_and_classes" target="_blank" rel="external">Choosing Between Structures and Classes</a></li>
+<li><a href="https://link.juejin.im?target=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F24232799%2Fwhy-choose-struct-over-class%3Frq%3D1" target="_blank" rel="external">Why Choose Struct Over Class?</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/swift/">swift</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swift/">swift</a></li></ul>
+
+      
+        
+	<div id="comment">
+	
+	<!-- 多说评论框 start -->
+	 <div class="ds-thread" data-thread-key="/2018/01/01/深入理解Swift中的Class和Struct/" data-title="深入理解Swift中的Class和Struct" data-url="https://xiezuan.github.io/2018/01/01/深入理解Swift中的Class和Struct/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"carewhat"};
+	  (function() {
+	    var ds = document.createElement('script');
+	    ds.type = 'text/javascript';ds.async = true;
+	    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	    ds.charset = 'UTF-8';
+	    (document.getElementsByTagName('head')[0] 
+	     || document.getElementsByTagName('body')[0]).appendChild(ds);
+	  })();
+	  </script>
+	<!-- 多说公共JS代码 end -->
+	
+	</div>
+	<link rel="stylesheet" href="/css/comment.css">
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/03/23/常用的linux 命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">常用的linux 命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开篇"><span class="toc-number">1.</span> <span class="toc-text">开篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#理解Class"><span class="toc-number">2.</span> <span class="toc-text">理解Class</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Class的定义和使用"><span class="toc-number">2.1.</span> <span class="toc-text">Class的定义和使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class是引用类型"><span class="toc-number">2.2.</span> <span class="toc-text">Class是引用类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Note"><span class="toc-number">2.2.1.</span> <span class="toc-text">Note</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Identity-Operators"><span class="toc-number">2.3.</span> <span class="toc-text">Identity Operators</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#和-是不一样的。"><span class="toc-number">2.3.1.</span> <span class="toc-text">===和==是不一样的。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#理解Struct"><span class="toc-number">3.</span> <span class="toc-text">理解Struct</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Struct的定义和使用"><span class="toc-number">3.1.</span> <span class="toc-text">Struct的定义和使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Struct是值类型"><span class="toc-number">3.2.</span> <span class="toc-text">Struct是值类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Note-1"><span class="toc-number">3.3.</span> <span class="toc-text">Note</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在项目中如何选择Struct和Class"><span class="toc-number">4.</span> <span class="toc-text">在项目中如何选择Struct和Class</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么优选struct"><span class="toc-number">4.1.</span> <span class="toc-text">为什么优选struct</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相同点"><span class="toc-number">5.1.</span> <span class="toc-text">相同点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不同点"><span class="toc-number">5.2.</span> <span class="toc-text">不同点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 xiezuan&#39;s blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+  
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+</body>
+</html>
