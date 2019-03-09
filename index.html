@@ -96,6 +96,67 @@
         
           <section id="main">
   
+    <article id="post-安装Android-Studio出现SDK-tools-directory-is-missing问题"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/09/安装Android-Studio出现SDK-tools-directory-is-missing问题/">安装Android Studio出现SDK tools directory is missing问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/03/09/安装Android-Studio出现SDK-tools-directory-is-missing问题/" class="article-date">
+	  <time datetime="2019-03-08T23:59:17.000Z" itemprop="datePublished">三月 9, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、启动Android Studio</p>
+<p>启动就会出现“SDK tools directory is missing”，如下图：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1g0w7vxsx72j30u00i2jsf.jpg" alt=""></p>
+<p>2、解决办法：</p>
+<p>这个问题怎么解决呢？根据提示关键字进行搜索，得到的基本都是让你再装一个Android SDK tools，而且还要在第三方下载，虽然Google也提供了SDK tools，可我没用成功，如果有人用Google提供的SDK tools解决了此问题，欢迎留言，不过这样的解决办法显然不是我要的，Google的东西没理由这么麻烦。</p>
+<p>经过半天时间的网上查找，最后在<a href="https://www.cnblogs.com/xiadewang/p/7820377.html" target="_blank" rel="external">https://www.cnblogs.com/xiadewang/p/7820377.html</a>看到问题最简单的解决办法，即在启动Android Studio时弹出“Unable to access Android SDK add-on list”时不选择“Setup Proxy”，而是“Cancel”，之后就是按照向导一路往下走，而且下载android sdk相关内容时不需要proxy了（也就是以前sdk manager需要配置proxy，现在可以直接从Google下载了。）。</p>
+<p>3、原因及思考：</p>
+<p>​     Q：安装包去除SDK安装选项，从而在Android Studio第一次运行时在线下载，这种方式也算是现在的主流了，可为啥我没能快速的搭建起开发环境呢？</p>
+<p>　 A：最重要的原因是启动Android Studio时弹窗没有指导性，让我一头雾水，从而根据2.x的经验进行Setup Proxy的选择，进而陷入困境，我想这是Android Studio需要改进的地方，同时对自己的开发也提了个醒。</p>
+<p>参考文档：</p>
+<p><a href="https://www.cnblogs.com/xiadewang/p/7820377.html" target="_blank" rel="external">https://www.cnblogs.com/xiadewang/p/7820377.html</a></p>
+<p>尊重自己的内心，尊重别人的选择。</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安装环境/">安装环境</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-Swift-Type-Casting-类型转换"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -385,7 +446,7 @@
 
           
             <div class="entry-thumbnail">
-              <a href="/2017/03/08/openCV学习笔记-01cv-Mat/"><img src="http://lorempixel.com/750/450/city/8" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/2017/03/08/openCV学习笔记-01cv-Mat/"><img src="http://lorempixel.com/750/450/city/5" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             cv::Mat 结构cv::Mat 是 openCV 里面图像的结构如果是灰度图， img.at&lt;uchar&gt;(x,y) 就代表一个像素点，反之彩色图像img.at&lt;cv::Vec3b&gt;(i,j)代表一个像素点，每个点由rgb三个颜色来显示。  同时还有Vec2b（二元素向量值）和Vec4b（四元素向量值）
@@ -449,7 +510,7 @@
 
           
             <div class="entry-thumbnail">
-              <a href="/2017/01/29/印像笔记留给你的空间/"><img src="http://lorempixel.com/750/450/city/3" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/2017/01/29/印像笔记留给你的空间/"><img src="http://lorempixel.com/750/450/city/10" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             大脑面临的三重考验杂事各类灵感和想法人类不缺灵感，缺的是将零散的想法组织和整理·
@@ -695,72 +756,12 @@
 <!-- Table of Contents -->
 
   
-    <article id="objective-c-关于ARC模式下内存的释放问题"  class="article article-type-objective-c" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+
+
+  <nav id="page-nav">
     
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2015/01/17/关于ARC模式下内存的释放问题/">关于ARC模式下内存的释放问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2015/01/17/关于ARC模式下内存的释放问题/" class="article-date">
-	  <time datetime="2015-01-17T12:06:25.000Z" itemprop="datePublished">一月 17, 2015</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ios/">ios</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-          
-            <div class="entry-thumbnail">
-              <a href="/2015/01/17/关于ARC模式下内存的释放问题/"><img src="http://lorempixel.com/750/450/city/6" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
-            </div>
-            <div class="entry-summary">
-            最近上海这边做了一个项目，由于上海的同事几乎没有工作经验，代码写得很乱，没有规范。应用在客户测试时出现各种问题，甚至是一些致命性的闪退问题，同事求助于我对代码做一些检查。发现现在学习IOS开发的人，自从有了ARC之后对内存管理完全没有概念。以为啥都不用管。
-
-常见的哪些情况下会系统不会释放内存NSTimerNSTimer 在使用当中有这些情况，当你在ViewController中创建后，如果...
-          
-
-        
-          <p class="article-more-link">
-            <a href="/2015/01/17/关于ARC模式下内存的释放问题/#more">阅读全文</a>
-          </p>
-        </div>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ios/">ios</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
 
 </section>
           <aside id="sidebar">
@@ -863,6 +864,21 @@
 
             
               <div class="widget-entry-thumbnail">
+                <a href="/2019/03/09/安装Android-Studio出现SDK-tools-directory-is-missing问题/" title=""><img width="50" height="50" src="https://ws2.sinaimg.cn/large/006tKfTcgy1g0w7t4gfrpj30go08swfb.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
+              </div>
+              <div class="widget-entry-summary">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/03/09/安装Android-Studio出现SDK-tools-directory-is-missing问题/">安装Android Studio出现SDK tools directory is missing问题</a></h6>
+              <span>三月 9, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-thumbnail">
                 <a href="/2018/01/13/Swift-Type-Casting-类型转换/" title=""><img width="50" height="50" src="https://ws1.sinaimg.cn/large/006tNc79gy1g04wh97no0j308c04oglp.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-16" title=""></a>
               </div>
               <div class="widget-entry-summary">
@@ -931,18 +947,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2017/01/29/印像笔记留给你的空间/">印像笔记留给你的空间-笔记</a></h6>
-              <span>一月 29, 2017</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -952,7 +956,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其它/">其它</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试/">面试</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其它/">其它</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试/">面试</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -962,7 +966,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openCV/">openCV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/印像笔记/">印像笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发/">开发</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openCV/">openCV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/印像笔记/">印像笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装环境/">安装环境</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发/">开发</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -973,7 +977,7 @@
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
