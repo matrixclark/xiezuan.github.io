@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>初识rxjava | xiezuan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="RXJava" />
+  
+  
+  
+  
+  <meta name="description" content="RxJava官方 GitHub 地址：https://github.com/ReactiveX/RxJava
+RxJava is a Java VM implementation of Reactive Extensions: a library for composing asynchronous and event-based programs by using observable sequ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识RxJava">
+<meta property="og:url" content="https://xiezuan.github.io/2019/04/28/初识RxJava/index.html">
+<meta property="og:site_name" content="xiezuan's blog">
+<meta property="og:description" content="RxJava官方 GitHub 地址：https://github.com/ReactiveX/RxJava
+RxJava is a Java VM implementation of Reactive Extensions: a library for composing asynchronous and event-based programs by using observable sequ">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1g2i6st88b2j30rs0b40tt.jpg">
+<meta property="og:updated_time" content="2019-04-28T03:29:04.561Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识RxJava">
+<meta name="twitter:description" content="RxJava官方 GitHub 地址：https://github.com/ReactiveX/RxJava
+RxJava is a Java VM implementation of Reactive Extensions: a library for composing asynchronous and event-based programs by using observable sequ">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1g2i6st88b2j30rs0b40tt.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="xiezuan&#39;s blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+<body>
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            <a href="https://xiezuan.github.io/" title="xiezuan" rel="home">
+              xiezuan&#39;s blog</a>
+          </h1>
+          <div class="site-description">学习总结 思考感悟 知识管理</div>
+
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">标签</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-初识RxJava" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="https://ws4.sinaimg.cn/large/006tNc79gy1g2i6st88b2j30rs0b40tt.jpg" rel="gallery_cjv0dkf1n000cw8s6klyoa2i2">
+        <img src="https://ws4.sinaimg.cn/large/006tNc79gy1g2i6st88b2j30rs0b40tt.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      初识RxJava
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/28/初识RxJava/" class="article-date">
+	  <time datetime="2019-04-28T03:25:12.000Z" itemprop="datePublished">四月 28, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h3><p>官方 GitHub 地址：<a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">https://github.com/ReactiveX/RxJava</a></p>
+<p>RxJava is a Java VM implementation of Reactive Extensions: a library for composing asynchronous and event-based programs by using observable sequences.<br>译：RxJava 是 Reactive Extensions 的 Java VM 实现：用于通过使用 observable 序列来组合异步和基于事件的程序的库。</p>
+<a id="more"></a>
+<h4 id="与-RxJava1-x-对比"><a href="#与-RxJava1-x-对比" class="headerlink" title="与 RxJava1.x 对比"></a>与 RxJava1.x 对比</h4><p>RxJava 2.0 已经按照 Reactive-Streams specification 规范完全的重写了。2.0 已经独立于 RxJava 1.x 而存在。<br>因为 Reactive-Streams 有一个不同的构架，它改变了一些以往 RxJava 的用法。这份文档尝试去总结所发生的变化，并描述如何把 1.x 的代码改写成符合 2.x 规则的代码。</p>
+<p>RxJava2.0 与 RxJava1.0 的区别，请看：<a href="http://blog.csdn.net/qq_35064774/article/details/53045298" target="_blank" rel="external">http://blog.csdn.net/qq_35064774/article/details/53045298</a></p>
+<h4 id="RxJava-的四个组成部分："><a href="#RxJava-的四个组成部分：" class="headerlink" title="RxJava 的四个组成部分："></a>RxJava 的四个组成部分：</h4><p>观察者（observer），被观察者（Observable），订阅（subscribe），响应事件。</p>
+<h4 id="RxJava-的强大的核心："><a href="#RxJava-的强大的核心：" class="headerlink" title="RxJava 的强大的核心："></a>RxJava 的强大的核心：</h4><ol>
+<li><strong>异步：</strong>两个比较核心的方法 subscribeOn 和 observeOn 这两个方法都传入一个 Scheduler 对象，subscribeOn 指定发射事件的线程，observeOn 指定消费事件的线程。</li>
+<li><strong>操作符：</strong>提供了一系列的转换操作符，如 map(),flatMap(),filter(),merge(),concat(),lift(),compose() 等操作符可以将事件序列中的对象或整个序列进行加工处理，转换成不同的事件或事件序列。</li>
+<li><strong>链式调用：</strong>链式调用最大的好处就是逻辑清晰，代码简洁。在应对较复杂的逻辑的时候，也能展现出清晰的思路！正如文章中戏称：迷之缩进！</li>
+</ol>
+<h4 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    ...</div><div class="line">    compile &apos;io.reactivex.rxjava2:rxjava:2.1.3&apos;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Data-类"><a href="#Data-类" class="headerlink" title="Data 类"></a>Data 类</h4><p>下面代码中使用的 Data 数据类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Data</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Data</span><span class="params">(<span class="keyword">int</span> id, String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.id = id;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.id = id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="1-最基本的使用"><a href="#1-最基本的使用" class="headerlink" title="1. 最基本的使用"></a>1. 最基本的使用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建观察者或者订阅者</span></div><div class="line">  Observer&lt;String&gt; observer = <span class="keyword">new</span> Observer&lt;String&gt;() &#123;</div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span> </span>&#123;</div><div class="line">          <span class="comment">//Disposable是1.x的Subscription改名的，因为Reactive-Streams规范用这个名称，为了避免重复</span></div><div class="line">          <span class="comment">//这个回调方法是在2.0之后新添加的</span></div><div class="line">          <span class="comment">//可以使用d.dispose()方法来取消订阅</span></div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String value)</span> </span>&#123;</div><div class="line">          Log.d(<span class="string">"onNext"</span>, value);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">          Log.d(<span class="string">"onError"</span>, e.getMessage());</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</div><div class="line">          Log.d(<span class="string">"onComplete"</span>, <span class="string">"complete"</span>);</div><div class="line">      &#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  <span class="comment">//创建被观察者</span></div><div class="line">  Observable observable = Observable.create(<span class="keyword">new</span> ObservableOnSubscribe() &#123;</div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter e)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">          e.onNext(<span class="string">"Hello World!"</span>);</div><div class="line">      &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  observable.subscribe(observer);</div></pre></td></tr></table></figure>
+<p>由于 1.x 中 Observable 不能合理的背压，导致了无法意料的 MissingBackpressureException，所以在 2.x 中，添加了 Flowable 来支持背压，而把 Observable 设计成非背压的。</p>
+<p>还有一点需要注意的就是，在上边注释中也有，onSubscribe(Disposable d) 这个回调方法是在 2.x 中添加的，Dispose 参数是由 1.x 中的 Subscription 改名的，为了避免名称冲突！</p>
+<h4 id="2-RxJava2-x-中的基本用法"><a href="#2-RxJava2-x-中的基本用法" class="headerlink" title="2.RxJava2.x 中的基本用法"></a>2.RxJava2.x 中的基本用法</h4><p>所以在 2.x 中，最好这么写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">Subscriber&lt;Data&gt; subscriber = <span class="keyword">new</span> Subscriber&lt;Data&gt;() &#123;</div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Subscription s)</span> </span>&#123;</div><div class="line">               Log.d(TAG, <span class="string">"onSubscribe: "</span>);</div><div class="line">               s.request(<span class="number">1</span>);</div><div class="line">           &#125;</div><div class="line"></div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Data data)</span> </span>&#123;</div><div class="line">               Log.d(TAG, <span class="string">"onNext: first:"</span> + data.getId() + data.getName());</div><div class="line">           &#125;</div><div class="line"></div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable t)</span> </span>&#123;</div><div class="line">               Log.d(TAG, <span class="string">"onError: "</span> + t.getMessage());</div><div class="line">           &#125;</div><div class="line"></div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</div><div class="line">               Log.d(TAG, <span class="string">"onComplete: "</span>);</div><div class="line">           &#125;</div><div class="line">       &#125;;</div><div class="line">      Flowable.create(<span class="keyword">new</span> FlowableOnSubscribe&lt;Data&gt;() &#123;</div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(FlowableEmitter&lt;Data&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">               Data data = <span class="keyword">new</span> Data(<span class="number">1</span>, <span class="string">"+Java"</span>);</div><div class="line">               Data data1 = <span class="keyword">new</span> Data(<span class="number">2</span>, <span class="string">"+Android"</span>);</div><div class="line">               e.onNext(data);</div><div class="line">               e.onNext(data1);</div><div class="line">               e.onComplete();</div><div class="line">           &#125;</div><div class="line">       &#125;, BackpressureStrategy.BUFFER).subscribe(subscriber);</div></pre></td></tr></table></figure>
+<h4 id="3-Consumer-消费者"><a href="#3-Consumer-消费者" class="headerlink" title="3.Consumer 消费者"></a>3.Consumer 消费者</h4><p>如果我们只关注 onNext() 方法的内容，而忽略其他方法，可以使用 Consumer 代替 Subscriber：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Data data = new Data(1, &quot;+Java&quot;);</div><div class="line">       Data data1 = new Data(2, &quot;+Android&quot;);</div><div class="line">       List&lt;Data&gt; list = new ArrayList&lt;&gt;();</div><div class="line">       list.add(data);</div><div class="line">       list.add(data1);</div><div class="line">       Flowable&lt;List&lt;Data&gt;&gt; flowable = Flowable.just(list);</div><div class="line"></div><div class="line">       Consumer consunmer = new Consumer&lt;List&lt;Data&gt;&gt;() &#123;</div><div class="line"></div><div class="line">           @Override</div><div class="line">           public void accept(List&lt;Data&gt; datas) throws Exception &#123;</div><div class="line">               for (Data data : datas) &#123;</div><div class="line">                   Log.d(TAG, &quot;onNext: second:&quot; + data.getId() + data.getName());</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;;</div><div class="line"></div><div class="line">       flowable.subscribe(consunmer);</div></pre></td></tr></table></figure>
+<h4 id="4-更简洁的写法"><a href="#4-更简洁的写法" class="headerlink" title="4. 更简洁的写法"></a>4. 更简洁的写法</h4><p>用 just 发射指定内容，可以是字符串，数组等各种对象类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Flowable.just(&quot;Hello,I am China!&quot;)</div><div class="line">    //替代1.x中的action1,接收一个参数，如果是两个参数action2使用BiCustomer，而且删除了action3-9</div><div class="line">    //多个参数用Custom&lt;Object[]&gt;</div><div class="line">    .subscribe(new Consumer&lt;String&gt;() &#123;</div><div class="line">        @Override</div><div class="line">        public void accept(String s) throws Exception &#123;</div><div class="line">            Log.e(&quot;consumer&quot;, s);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<h4 id="1-map：转换操作"><a href="#1-map：转换操作" class="headerlink" title="1.map：转换操作"></a>1.map：转换操作</h4><p>如果我们想修改 Data 数据中 id 为 2 时的 name，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">Data data = new Data(1, &quot;+Java&quot;);</div><div class="line">Data data1 = new Data(2, &quot;+Android&quot;);</div><div class="line">List&lt;Data&gt; list = new ArrayList&lt;&gt;();</div><div class="line">list.add(data);</div><div class="line">list.add(data1);</div><div class="line">Flowable.just(list).map(new Function&lt;List&lt;Data&gt;, List&lt;Data&gt;&gt;() &#123;</div><div class="line">    @Override</div><div class="line">    public List&lt;Data&gt; apply(List&lt;Data&gt; datas) throws Exception &#123;</div><div class="line">        for (Data data : datas) &#123;</div><div class="line">            if (data.getId() == 2) &#123;</div><div class="line">                data.setName(data.getName() + &quot;---DeMon&quot;);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return datas;</div><div class="line">    &#125;</div><div class="line">&#125;).subscribe(new Consumer&lt;List&lt;Data&gt;&gt;() &#123;</div><div class="line">    @Override</div><div class="line">    public void accept(List&lt;Data&gt; datas) throws Exception &#123;</div><div class="line">        for (Data data : datas) &#123;</div><div class="line">            Log.d(TAG, &quot;onNext: three:&quot; + data.getId() + data.getName());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20161129102650447" alt="img"></p>
+<h4 id="2-flatMap：批量转换"><a href="#2-flatMap：批量转换" class="headerlink" title="2.flatMap：批量转换"></a>2.flatMap：批量转换</h4><p>如果我们需要批量修改（一般来说是容器的数据）数据，需要使用 fromIterable() 发射数据，flatMap() 进行批量修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Data data = new Data(1, &quot;+Java&quot;);</div><div class="line">Data data1 = new Data(2, &quot;+Android&quot;);</div><div class="line">List&lt;Data&gt; list = new ArrayList&lt;&gt;();</div><div class="line">list.add(data);</div><div class="line">list.add(data1);</div><div class="line">Flowable.fromIterable(list).flatMap(new Function&lt;Data, Publisher&lt;?&gt;&gt;() &#123;</div><div class="line">    @Override</div><div class="line">    public Publisher&lt;?&gt; apply(Data data) throws Exception &#123;</div><div class="line">        data.setName(data.getName() + &quot;---DeMon&quot;);</div><div class="line">        return Flowable.fromArray(data);</div><div class="line">    &#125;</div><div class="line">&#125;).subscribe(new Consumer&lt;Object&gt;() &#123;</div><div class="line">    @Override</div><div class="line">    public void accept(Object o) throws Exception &#123;</div><div class="line">        Data data = (Data) o;</div><div class="line">        Log.d(TAG, &quot;onNext: four:&quot; + data.getId() + data.getName());</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20161129110144075" alt="img"></p>
+<h4 id="3-filter：过滤器（筛选器）"><a href="#3-filter：过滤器（筛选器）" class="headerlink" title="3.filter：过滤器（筛选器）"></a>3.filter：过滤器（筛选器）</h4><p>range() 方法，第一个参数为开始值，第二个参数为数量；<br>filter() 方法用于对数据进行过滤；<br>take(n) 方法用于取前 n 个值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Flowable.range(1, 100)//从5开始的10个数(5——14)</div><div class="line">              .filter(new Predicate&lt;Integer&gt;() &#123;</div><div class="line">                  @Override</div><div class="line">                  public boolean test(Integer integer) throws Exception &#123;</div><div class="line">                      return integer % 2 == 0;//过滤为偶数,得到偶数</div><div class="line">                  &#125;</div><div class="line">              &#125;)</div><div class="line">              .take(3)//只要前3个数据</div><div class="line">              .subscribe(new Consumer&lt;Integer&gt;() &#123;</div><div class="line">                  @Override</div><div class="line">                  public void accept(Integer integer) throws Exception &#123;</div><div class="line">                      Log.d(TAG, &quot;accept: &quot; + integer);</div><div class="line">                  &#125;</div><div class="line">              &#125;);</div></pre></td></tr></table></figure>
+<h4 id="4-Schedulers-线程控制"><a href="#4-Schedulers-线程控制" class="headerlink" title="4.Schedulers: 线程控制"></a>4.Schedulers: 线程控制</h4><p>我们可以通过 subscribeOn/observeOn 来制定观察者和被观察者的线程，然后使用 chedulers 进行线程控制。<br>这一点在 Android 的 UI 线程用尤为重要。</p>
+<p>在 RxJava 中，Scheduler ——调度器，相当于线程控制器，RxJava 通过它来指定每一段代码应该运行在什么样的线程。RxJava 已经内置了几个 Scheduler ，它们已经适合大多数的使用场景：</p>
+<ol>
+<li>Schedulers.immediate(): 直接在当前线程运行，相当于不指定线程。这是默认的 Scheduler。</li>
+<li>Schedulers.newThread(): 总是启用新线程，并在新线程执行操作。</li>
+<li>Schedulers.io(): I/O 操作（读写文件、读写数据库、网络信息交互等）所使用的 Scheduler。行为模式和 newThread() 差不多，区别在于 io() 的内部实现是是用一个无数量上限的线程池，可以重用空闲的线程，因此多数情况下 io() 比 newThread() 更有效率。不要把计算工作放在 io() 中，可以避免创建不必要的线程。</li>
+<li>Schedulers.computation(): 计算所使用的 Scheduler。这个计算指的是 CPU 密集型计算，即不会被 I/O 等操作限制性能的操作，例如图形的计算。这个 Scheduler 使用的固定的线程池，大小为 CPU 核数。不要把 I/O 操作放在 computation() 中，否则 I/O 操作的等待时间会浪费 CPU。</li>
+<li>另外， Android 还有一个专用的 AndroidSchedulers.mainThread()，它指定的操作将在 Android 主线程运行。</li>
+</ol>
+<p>有了这几个 Scheduler ，就可以使用 subscribeOn() 和 observeOn() 两个方法来对线程进行控制了。<br>\1. subscribeOn(): 指定 subscribe() 所发生的线程，即 Observable.OnSubscribe 被激活时所处的线程。或者叫做事件产生的线程。<br>\2. observeOn(): 指定 Subscriber 所运行在的线程。或者叫做事件消费的线程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">Observable.range(1, 9)</div><div class="line">               .subscribeOn(Schedulers.io())// IO 线程，由 subscribeOn() 指定</div><div class="line">               .observeOn(Schedulers.newThread())//新线程，由 observeOn() 指定</div><div class="line">               .map(new Function&lt;Integer, Object&gt;() &#123;</div><div class="line">                   @Override</div><div class="line">                   public Object apply(Integer integer) throws Exception &#123;</div><div class="line">                       return integer * 10;</div><div class="line">                   &#125;</div><div class="line">               &#125;)</div><div class="line">               .observeOn(Schedulers.io()) // IO 线程，由 observeOn() 指定</div><div class="line">               .map(new Function&lt;Object, Object&gt;() &#123;</div><div class="line">                   @Override</div><div class="line">                   public Object apply(Object o) throws Exception &#123;</div><div class="line">                       int a = (int) o;</div><div class="line">                       return a / 2;</div><div class="line">                   &#125;</div><div class="line">               &#125;).observeOn(Schedulers.newThread())//新线程，由 observeOn() 指定</div><div class="line">               .subscribe(new Consumer&lt;Object&gt;() &#123;</div><div class="line">                   @Override</div><div class="line">                   public void accept(Object o) throws Exception &#123;</div><div class="line">                       Log.d(TAG, &quot;accept: &quot; + o);</div><div class="line">                   &#125;</div><div class="line">               &#125;);</div></pre></td></tr></table></figure>
+<h3 id="RxAndroid"><a href="#RxAndroid" class="headerlink" title="RxAndroid"></a>RxAndroid</h3><p>Android 上的响应式扩展，在 RxJava 基础上添加了 Android 线程调度。</p>
+<p>官方 GitHub:<a href="https://github.com/ReactiveX/RxAndroid" target="_blank" rel="external">https://github.com/ReactiveX/RxAndroid</a></p>
+<p>针对 RxJava 的 Android 特定绑定 2。<br>该模块将 RxJava 的最小类添加到 Android 应用程序中编写无效组件，方便无忧。更具体地说，它提供了 Scheduler 在主线程上或任何给定的时间表 Looper。</p>
+<p>曾几何时，RxAndroid 确实提供了很多的实用的方法，但后来社区上很多人对这库的结构有意见，然后作者便进行了重构，现在只保留了 AndroidSchedulers， 现在基本 RxAndroid 只有一个功能，那就是 AndroidSchedulers.mainThread 方法用于指定主线程。</p>
+<p>所以就在根据官方文档简单介绍一下 RxAndroid 的使用。</p>
+<h4 id="添加依赖-1"><a href="#添加依赖-1" class="headerlink" title="添加依赖"></a>添加依赖</h4><p>因为 rxandroid 发行很少，建议你也依赖于 rxjava 最新版本的 bug 修复和新功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">compile &apos;io.reactivex.rxjava2:rxandroid:2.0.1&apos;</div><div class="line">compile &apos;io.reactivex.rxjava2:rxjava:2.1.3&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Observing-on-the-main-thread"><a href="#Observing-on-the-main-thread" class="headerlink" title="Observing on the main thread"></a>Observing on the main thread</h4><p>在 Android 上处理异步任务时最常见的操作之一是在主线程上观察任务的结果或结果。使用香草 Android，这通常会用一个完成 AsyncTask。使用 RxJava，您将声明 Observable 在主线程上被观察：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Observable.just(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;).subscribeOn(Schedulers.newThread())</div><div class="line">                .observeOn(AndroidSchedulers.mainThread())</div><div class="line">                .subscribe(new Consumer&lt;String&gt;() &#123;</div><div class="line">                    @Override</div><div class="line">                    public void accept(String s) throws Exception &#123;</div><div class="line">                        //text.setText(s);</div><div class="line">                        Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div></pre></td></tr></table></figure>
+<p>这将执行 Observable 一个新的线程，并通过 onNext 主线程发出结果。</p>
+<h4 id="Observing-on-arbitrary-loopers"><a href="#Observing-on-arbitrary-loopers" class="headerlink" title="Observing on arbitrary loopers"></a>Observing on arbitrary loopers</h4><p>以前的示例只是一个更通用的概念的专门化：将异步通信绑定到 Android 消息循环，或者 Looper。为了观察一个 Observable 任意的 Looper，Scheduler 通过调用创建一个关联 AndroidSchedulers.from：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Looper backgroundLooper = // ...</div><div class="line">Observable.just(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;)</div><div class="line">        .observeOn(AndroidSchedulers.from(backgroundLooper))</div><div class="line">        .subscribe(/* an Observer */);</div></pre></td></tr></table></figure>
+<p>这将在新线程上执行 Observable，并通过 onNext 任何正在运行的线程发出结果 backgroundLooper。</p>
+<h4 id="官方-Demo"><a href="#官方-Demo" class="headerlink" title="官方 Demo"></a>官方 Demo</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">public class MainActivity extends AppCompatActivity &#123;</div><div class="line">    private static final String TAG = &quot;MainActivity&quot;;</div><div class="line"></div><div class="line">    private final CompositeDisposable disposables = new CompositeDisposable();</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                onRunSchedulerExampleButtonClicked();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onDestroy() &#123;</div><div class="line">        super.onDestroy();</div><div class="line">        disposables.clear();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    void onRunSchedulerExampleButtonClicked() &#123;</div><div class="line">        disposables.add(sampleObservable()</div><div class="line">                // Run on a background thread</div><div class="line">                .subscribeOn(Schedulers.io())</div><div class="line">                // Be notified on the main thread</div><div class="line">                .observeOn(AndroidSchedulers.mainThread())</div><div class="line">                .subscribeWith(new DisposableObserver&lt;String&gt;() &#123;</div><div class="line">                    @Override</div><div class="line">                    public void onComplete() &#123;</div><div class="line">                        Log.d(TAG, &quot;onComplete()&quot;);</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    @Override</div><div class="line">                    public void onError(Throwable e) &#123;</div><div class="line">                        Log.e(TAG, &quot;onError()&quot;, e);</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    @Override</div><div class="line">                    public void onNext(String string) &#123;</div><div class="line">                        Log.d(TAG, &quot;onNext(&quot; + string + &quot;)&quot;);</div><div class="line">                    &#125;</div><div class="line">                &#125;));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static Observable&lt;String&gt; sampleObservable() &#123;</div><div class="line">        return Observable.defer(new Callable&lt;ObservableSource&lt;? extends String&gt;&gt;() &#123;</div><div class="line">            @Override</div><div class="line">            public ObservableSource&lt;? extends String&gt; call() throws Exception &#123;</div><div class="line">                // Do some long running operation</div><div class="line">                SystemClock.sleep(5000);</div><div class="line">                return Observable.just(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>本文简单介绍 RxJava/RxAndroid 2.0 的一些基本概念和简单使用，接下来还会继续学习 RxJava 在 Android 中的使用，以及经典的 RxAndroid（RxJava）和 Retrofit 的结合。</p>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a href="http://blog.csdn.net/aiynmimi/article/details/53382567" target="_blank" rel="external">http://blog.csdn.net/aiynmimi/article/details/53382567</a><br>[<a href="http://gank.io/post/560e15be2dca930e00da1083#toc_19](" target="_blank" rel="external">http://gank.io/post/560e15be2dca930e00da1083#toc_19](</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RXJava/">RXJava</a></li></ul>
+
+      
+        
+	<div id="comment">
+	
+	<!-- 多说评论框 start -->
+	 <div class="ds-thread" data-thread-key="/2019/04/28/初识RxJava/" data-title="初识RxJava" data-url="https://xiezuan.github.io/2019/04/28/初识RxJava/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"carewhat"};
+	  (function() {
+	    var ds = document.createElement('script');
+	    ds.type = 'text/javascript';ds.async = true;
+	    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	    ds.charset = 'UTF-8';
+	    (document.getElementsByTagName('head')[0] 
+	     || document.getElementsByTagName('body')[0]).appendChild(ds);
+	  })();
+	  </script>
+	<!-- 多说公共JS代码 end -->
+	
+	</div>
+	<link rel="stylesheet" href="/css/comment.css">
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/09/安装Android-Studio出现SDK-tools-directory-is-missing问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">安装Android Studio出现SDK tools directory is missing问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#RxJava"><span class="toc-number">1.</span> <span class="toc-text">RxJava</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#与-RxJava1-x-对比"><span class="toc-number">1.1.</span> <span class="toc-text">与 RxJava1.x 对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RxJava-的四个组成部分："><span class="toc-number">1.2.</span> <span class="toc-text">RxJava 的四个组成部分：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RxJava-的强大的核心："><span class="toc-number">1.3.</span> <span class="toc-text">RxJava 的强大的核心：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加依赖"><span class="toc-number">1.4.</span> <span class="toc-text">添加依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data-类"><span class="toc-number">1.5.</span> <span class="toc-text">Data 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-最基本的使用"><span class="toc-number">1.6.</span> <span class="toc-text">1. 最基本的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-RxJava2-x-中的基本用法"><span class="toc-number">1.7.</span> <span class="toc-text">2.RxJava2.x 中的基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Consumer-消费者"><span class="toc-number">1.8.</span> <span class="toc-text">3.Consumer 消费者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-更简洁的写法"><span class="toc-number">1.9.</span> <span class="toc-text">4. 更简洁的写法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-map：转换操作"><span class="toc-number">1.10.</span> <span class="toc-text">1.map：转换操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-flatMap：批量转换"><span class="toc-number">1.11.</span> <span class="toc-text">2.flatMap：批量转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-filter：过滤器（筛选器）"><span class="toc-number">1.12.</span> <span class="toc-text">3.filter：过滤器（筛选器）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Schedulers-线程控制"><span class="toc-number">1.13.</span> <span class="toc-text">4.Schedulers: 线程控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RxAndroid"><span class="toc-number">2.</span> <span class="toc-text">RxAndroid</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#添加依赖-1"><span class="toc-number">2.1.</span> <span class="toc-text">添加依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Observing-on-the-main-thread"><span class="toc-number">2.2.</span> <span class="toc-text">Observing on the main thread</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Observing-on-arbitrary-loopers"><span class="toc-number">2.3.</span> <span class="toc-text">Observing on arbitrary loopers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#官方-Demo"><span class="toc-number">2.4.</span> <span class="toc-text">官方 Demo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结语"><span class="toc-number">3.</span> <span class="toc-text">结语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考："><span class="toc-number">4.</span> <span class="toc-text">参考：</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 xiezuan&#39;s blog All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+  
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+</body>
+</html>
